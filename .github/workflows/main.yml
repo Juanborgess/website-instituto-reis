@@ -22,4 +22,4 @@ jobs:
         # IMPORTANTE: A pasta onde o site fica na Hostinger.
         # Geralmente é public_html/ se for o domínio principal.
         # Se for subdomínio, coloque o caminho correto ex: public_html/barbeiro
-        server-dir: public_html/
+        server-dir: ./
