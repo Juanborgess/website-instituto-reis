@@ -1,0 +1,597 @@
+/* =================================================================
+   TEMA: ACADEMIC AUTHORITY (HIGH CONTRAST EDITION)
+   ================================================================= */
+
+/* --- 1. CONFIGURAÇÃO BASE (O CAMPUS VIRTUAL) --- */
+body.lp-instructor-body {
+    background-color: #020b16; 
+    color: #e6f1ff; 
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   HEADER (ACADEMIC NAVY EDITION)
+   ========================================= */
+.glass-header {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+    background: rgba(2, 11, 22, 0.95); 
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15); 
+}
+
+.header-content {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; box-sizing: border-box; padding: 0 30px;
+    height: 90px; margin: 0 auto; max-width: 1200px;
+}
+
+.logo-link { flex-shrink: 0; margin-right: 0; }
+.logo-img {
+    height: 55px; width: 55px; object-fit: contain;
+    background-color: transparent; 
+    border-radius: 50%;
+    border: 1px solid #d4af37;
+    padding: 3px;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.nav-menu.hide-mobile {
+    display: block !important; position: static !important;
+    width: auto !important; height: auto !important;
+    background: transparent !important; border: none !important;
+    overflow: visible !important; padding: 0; margin: 0;
+}
+
+.nav-list {
+    display: flex; flex-direction: row; align-items: center; gap: 40px;
+    padding: 0; margin: 0; list-style: none;
+}
+
+.nav-link {
+    color: #e6f1ff; 
+    text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}
+.nav-link:hover { color: #d4af37; } 
+
+.mobile-menu-btn { display: none !important; }
+
+.btn-header-whatsapp {
+    flex-shrink: 0; display: inline-flex !important;
+    align-items: center; gap: 10px;
+    background: transparent;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    text-decoration: none; padding: 10px 25px;
+    border-radius: 2px; 
+    font-weight: 600; font-size: 0.85rem; text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-header-whatsapp:hover {
+    background: #d4af37; color: #020b16; box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.serif-font {
+    font-family: 'Playfair Display', serif;
+}
+
+.text-gold {
+    color: #d4af37;
+}
+
+.text-highlight {
+    color: #d4af37 !important; 
+}
+
+/* =========================================
+   2. HERO SECTION (AUTHORITY BLUE)
+   ========================================= */
+.hero-navy-theme {
+    position: relative;
+    min-height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 130px; 
+    padding-bottom: 60px;
+    background-color: #020b16;
+    overflow: hidden;
+    text-align: center; 
+}
+
+.navy-academic-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0;
+}
+
+.academic-pattern {
+    position: absolute;
+    width: 100%; height: 100%;
+    background-image: 
+        linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.5;
+}
+
+.gradient-overlay-navy {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, #020b16 90%);
+}
+
+.niche-badge.navy-gold-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(10, 25, 47, 0.8);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #d4af37;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px;
+    margin: 0 auto 25px auto; 
+    display: inline-flex;
+}
+
+.hero-navy-theme h1 {
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
+    line-height: 1.15;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+.hero-navy-theme h1 .serif-font {
+    display: block;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.1em;
+    color: #d4af37; 
+}
+
+.hero-navy-theme p {
+    font-size: 1.15rem;
+    color: #dce7f5;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto 40px auto; 
+    text-align: center; 
+}
+.hero-navy-theme strong { color: #fff; font-weight: 600; }
+
+.btn-navy-gold {
+    display: inline-flex; align-items: center; gap: 15px;
+    background-color: #d4af37;
+    color: #020b16;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 2px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 1px solid #d4af37;
+    width: 100%;
+    max-width: 350px; 
+    justify-content: center;
+    padding: 20px 30px;
+    font-size: 1rem;
+}
+
+.btn-navy-gold:hover {
+    background-color: transparent;
+    color: #d4af37;
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+/* =========================================
+   3. SEÇÃO SOBRE & LEGADO (CONTRASTE ALTO)
+   ========================================= */
+.about-legacy-section {
+    padding: 80px 0;
+    background-color: #0a192f;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.legacy-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.section-tag-navy {
+    display: block;
+    font-size: 1rem;       
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 4px;  
+    margin-bottom: 20px;
+    font-weight: 800;      
+}
+
+.legacy-text h2 {
+    font-size: 2rem; color: #fff; margin-bottom: 25px; line-height: 1.2;
+}
+
+.legacy-text p {
+    font-size: 1rem; 
+    color: #e6f1ff; 
+    line-height: 1.7; 
+    margin-bottom: 30px;
+    opacity: 0.95; 
+}
+.legacy-text strong { color: #d4af37; }
+
+.quote-box {
+    border-left: 3px solid #d4af37;
+    padding-left: 20px;
+    margin-top: 30px;
+}
+.quote-box p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #fff !important; 
+    margin-bottom: 10px;
+    opacity: 1;
+}
+.quote-box .author {
+    font-size: 0.85rem; color: #d4af37; font-weight: 600; text-transform: uppercase;
+}
+
+.legacy-visual {
+    position: relative;
+    padding: 20px;
+}
+
+.graduation-frame {
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.img-beca {
+    width: 100%; height: auto;
+    border-radius: 4px;
+    display: block;
+    filter: contrast(1.1) saturate(0.9);
+}
+
+.frame-detail-gold {
+    position: absolute;
+    top: -15px; left: -15px;
+    width: 100%; height: 100%;
+    border: 2px solid rgba(212, 175, 55, 0.4);
+    z-index: -1;
+    transition: all 0.5s ease;
+}
+
+.badge-floating {
+    position: absolute;
+    bottom: -20px; right: -10px;
+    background: #d4af37;
+    color: #020b16;
+    padding: 10px 20px;
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700; font-size: 0.85rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    border-radius: 2px;
+}
+
+.graduation-frame:hover .frame-detail-gold {
+    top: 15px; left: 15px;
+    border-color: #d4af37;
+}
+
+.pillars-section h2 {
+    font-size: 2.8rem;     
+    color: #ffffff !important;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    font-weight: 800;      
+}
+
+.pillars-section h2 .text-highlight,
+.pillars-section h2 .text-gold {
+    font-size: 1em;        
+    display: block;        
+    margin-top: 5px;
+    font-style: italic;    
+}
+
+.pillars-section h2 .text-gold {
+    color: #d4af37 !important;
+}
+
+/* =========================================
+   4. SEÇÃO METODOLOGIA (PILLARS)
+   ========================================= */
+.pillars-section {
+    padding: 80px 0;
+    background-color: #020b16;
+}
+
+.pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.pillar-card {
+    background: #0f1e36; 
+    padding: 35px 25px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.08); 
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.pillar-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(212, 175, 55, 0.5);
+    background: #14243e;
+}
+
+.highlight-card {
+    background: linear-gradient(145deg, #0f1e36, #1a3055);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.icon-box-navy {
+    width: 60px; height: 60px;
+    background: rgba(212, 175, 55, 0.1);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    color: #d4af37;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.pillar-card h3 {
+    font-size: 1.25rem; color: #fff; margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+.pillar-card p {
+    font-size: 0.95rem; 
+    color: #ccd6f6; 
+    line-height: 1.6;
+}
+
+
+
+/* =========================================
+   5. SEÇÃO OFERTA (APLICAÇÃO)
+   ========================================= */
+.application-section {
+    padding: 80px 0;
+    position: relative;
+    background: #0a192f;
+    overflow: hidden;
+}
+
+.navy-depth-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.08), transparent 60%);
+    pointer-events: none;
+}
+
+.application-box {
+    background: rgba(17, 34, 64, 0.9); 
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    padding: 50px 30px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.big-icon {
+    font-size: 3rem; color: #d4af37; margin-bottom: 25px; opacity: 1;
+}
+
+.app-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; color: #fff; margin-bottom: 20px;
+}
+
+.app-header p {
+    color: #dce7f5; 
+    margin-bottom: 40px; 
+    max-width: 600px; 
+    margin-left: auto; margin-right: auto;
+    font-size: 1.05rem;
+}
+
+.btn-application-gold {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    background: transparent;
+    border: 2px solid #d4af37;
+    color: #d4af37;
+    padding: 18px 50px;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.btn-application-gold:hover {
+    background: #d4af37; color: #020b16;
+}
+
+.security-text {
+    display: block; font-size: 0.8rem; color: #8892b0;
+}
+.security-text i { color: #d4af37; margin-right: 5px; }
+
+
+
+/* =========================================
+   MEDIA QUERIES (DESKTOP)
+   ========================================= */
+@media (min-width: 1024px) {
+    
+    .hero-navy-theme {
+        text-align: left; 
+        justify-content: center; 
+        padding-top: 140px;
+    }
+    
+    .hero-navy-theme .lp-text-wrapper {
+        display: block; 
+        text-align: left;
+    }
+
+    .niche-badge.navy-gold-badge {
+        margin: 0 0 30px 0; 
+    }
+
+    .hero-navy-theme h1 {
+        font-size: 4.5rem; 
+        margin-left: 0;
+    }
+
+    .hero-navy-theme p {
+        text-align: left; 
+        margin: 0 0 40px 0;
+        max-width: 650px;
+    }
+
+    .centered-actions {
+        justify-content: flex-start; 
+    }
+
+    .legacy-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+    }
+
+    .pillars-grid {
+        display: flex; flex-wrap: wrap; justify-content: center;
+        gap: 30px;
+    }
+    
+    .pillar-card {
+        width: calc(33.333% - 20px);
+        min-width: 300px; 
+    }
+
+    .section-tag-navy {
+        font-size: 1.3rem;     
+        letter-spacing: 6px;   
+        margin-bottom: 30px;
+    }
+
+    .pillars-section h2 {
+        font-size: 4.8rem;     
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .btn-application-gold { 
+        width: auto; 
+        min-width: 280px; 
+        font-size: 1rem;
+    }
+    .btn-application-gold:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+    }
+}
+
+
+@media (max-width: 1023px) {
+    .header-content { height: 80px; padding: 0 20px; }
+    .nav-menu.hide-mobile {
+        position: fixed !important; top: 80px; left: 0; width: 100% !important; height: 0 !important;
+        background: #020b16 !important; border-bottom: 1px solid rgba(212,175,55,0.2) !important;
+        display: block !important; overflow: hidden !important;
+    }
+    .nav-menu.active { height: 350px !important; }
+    .nav-list { flex-direction: column; gap: 30px; padding: 40px 0; }
+    .mobile-menu-btn { display: flex !important; flex-direction: column; justify-content: space-between; width: 30px; height: 20px; }
+    .bar { width: 100%; height: 2px; background: #d4af37; }
+    .btn-header-whatsapp { display: none !important; }
+}
+
+
+@media (max-width: 1023px) {
+    .mobile-menu-btn {
+        display: flex !important; 
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 1002; 
+        margin-left: auto; 
+    }
+
+    .bar {
+        width: 100%;
+        height: 2px;
+        background-color: #d4af37; 
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    /* Animação do X quando ativo */
+    .mobile-menu-btn.active .bar-1 { transform: rotate(-45deg) translate(-5px, 6px); }
+    .mobile-menu-btn.active .bar-2 { opacity: 0; }
+    .mobile-menu-btn.active .bar-3 { transform: rotate(45deg) translate(-5px, -6px); }
+
+    .nav-menu.hide-mobile {
+        display: block !important; 
+        position: fixed;
+        top: 80px; 
+        left: 0;
+        width: 100%;
+        height: 0; 
+        background-color: rgba(2, 11, 22, 0.98); 
+        backdrop-filter: blur(15px);
+        overflow: hidden;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
+        border-bottom: 0px solid transparent;
+    }
+
+    .nav-menu.active {
+        height: 350px !important; 
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .nav-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding-top: 50px; 
+        list-style: none;
+    }
+
+    .nav-link {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1rem;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
+    }
+    
+    .btn-header-whatsapp {
+        display: none !important;
+    }
+}

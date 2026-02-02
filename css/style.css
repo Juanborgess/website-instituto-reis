@@ -1,0 +1,1230 @@
+/* =========================================
+   1. CORE & VARIÁVEIS (ROYAL SYSTEM)
+   ========================================= */
+:root {
+    --royal-navy: #05264E;      
+    --royal-blue: #003060;       
+    --royal-gold: #FFD700;       
+    --royal-gold-hover: #E5C100; 
+    --text-white: #FFFFFF;
+    --text-silver: #E2E8F0;      
+    --glass-dark: rgba(0, 26, 53, 0.85); 
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+    --shadow-premium: 0 20px 40px rgba(0, 0, 0, 0.4);
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { 
+    scroll-behavior: smooth; 
+    font-size: 16px;
+    scroll-padding-top: 100px;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--royal-navy);
+    color: var(--text-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 800; line-height: 1.1; }
+a { text-decoration: none; color: inherit; transition: var(--transition-smooth); }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+
+.container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =========================================
+   2. HEADER PREMIUM (DARK GLASS)
+   ========================================= */
+.glass-header {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    height: 90px; 
+    background: var(--glass-dark);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 1002;
+    display: flex; align-items: center;
+    transition: var(--transition-smooth);
+}
+
+.header-content {
+    display: flex; justify-content: space-between; align-items: center;
+    height: 100%;
+}
+
+.logo-link { display: flex; align-items: center; height: 100%; }
+.logo-img {
+    width: 70px !important; 
+    height: 70px !important;
+    object-fit: contain; 
+    border-radius: 50%; 
+    background-color: #fff; 
+    border: 2px solid rgba(255, 255, 255, 0.2); 
+    padding: 4px; 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4); 
+    transition: transform 0.3s ease;
+}
+
+.nav-menu { display: none;  }
+
+.header-actions {
+    display: flex; align-items: center; gap: 15px;
+}
+
+.btn-header-whatsapp {
+    background: #25D366; color: white;
+    padding: 10px 20px; border-radius: 50px;
+    font-weight: 700; font-size: 0.85rem;
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.2);
+    border: 1px solid transparent;
+}
+.btn-header-whatsapp:hover {
+    background: transparent; color: #25D366; border-color: #25D366;
+}
+
+.mobile-menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+    position: relative; 
+    z-index: 1003; 
+}
+
+/* Barras do Botão */
+.bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--royal-gold); 
+    border-radius: 3px;
+    transition: all 0.4s ease;
+}
+
+/* --- Estado Ativo (X) --- */
+.mobile-menu-btn.active .bar-1 {
+    transform: rotate(45deg) translate(5px, 6px);
+    background-color: var(--text-white); /* Muda para branco para contrastar com o fundo azul do menu */
+}
+
+.mobile-menu-btn.active .bar-2 {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.mobile-menu-btn.active .bar-3 {
+    transform: rotate(-45deg) translate(5px, -6px);
+    background-color: var(--text-white); /* Muda para branco */
+}
+
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--royal-navy); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    padding-top: 90px; 
+    transform: translateY(-100%);
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.mobile-nav-overlay.active {
+    transform: translateY(0);
+}
+
+.mobile-nav-list { text-align: center; }
+.mobile-nav-link {
+    display: block; font-family: var(--font-heading);
+    font-size: 2rem; font-weight: 800;
+    color: var(--text-white);
+    margin: 25px 0;
+    opacity: 0; transform: translateY(20px);
+    transition: 0.4s ease;
+}
+.mobile-nav-link:hover { color: var(--royal-gold); }
+
+.mobile-nav-overlay.active .mobile-nav-link { opacity: 1; transform: translateY(0); }
+.mobile-nav-overlay.active .mobile-nav-link:nth-child(1) { transition-delay: 0.1s; }
+.mobile-nav-overlay.active .mobile-nav-link:nth-child(2) { transition-delay: 0.2s; }
+.mobile-nav-overlay.active .mobile-nav-link:nth-child(3) { transition-delay: 0.3s; }
+.mobile-nav-overlay.active .mobile-nav-link:nth-child(4) { transition-delay: 0.4s; }
+
+
+/* =========================================
+   3. HERO SECTION (THE ROYAL STANDARD)
+   ========================================= */
+.hero-royal-premium {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 110px;
+    padding-bottom: 60px;
+    overflow: hidden;
+}
+
+.royal-bg-effects {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+    background: radial-gradient(circle at 50% 0%, #00254a 0%, #000912 100%);
+}
+.effect-orb-blue {
+    position: absolute; top: -20%; right: -20%; width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0, 48, 96, 0.5), transparent 70%);
+    filter: blur(80px);
+}
+.effect-grid-pattern {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.3;
+}
+
+.hero-grid-layout {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; gap: 60px;
+}
+
+.hero-content-wrapper {
+    text-align: center; max-width: 600px; margin: 0 auto;
+}
+
+.royal-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 8px 20px; border-radius: 50px;
+    margin-bottom: 25px; backdrop-filter: blur(5px);
+}
+.badge-icon { color: var(--royal-gold); animation: pulse 2s infinite; }
+.royal-badge span { font-size: 0.8rem; font-weight: 700; color: var(--royal-gold); text-transform: uppercase; letter-spacing: 1px; }
+
+.royal-headline {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    color: var(--text-white); margin-bottom: 20px;
+}
+.royal-headline .highlight-gold {
+    color: #3182ce; 
+    text-shadow: 0 0 30px rgba(49, 130, 206, 0.2);
+}
+
+.royal-description {
+    font-size: 1.05rem; color: var(--text-silver); margin-bottom: 35px; line-height: 1.7;
+}
+
+.royal-cta-group {
+    display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px;
+}
+
+.btn-royal-primary {
+    position: relative; background: var(--royal-gold); color: #000;
+    padding: 18px 30px; border-radius: 8px; font-weight: 800;
+    text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 10px;
+    overflow: hidden; box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
+}
+.btn-shine {
+    position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    transform: skewX(-20deg); animation: shine-anim 3s infinite;
+}
+
+.btn-royal-secondary {
+    padding: 18px 30px; color: var(--text-white); font-weight: 600;
+    border-bottom: 1px solid transparent; transition: border-color 0.3s;
+}
+.btn-royal-secondary:hover { border-color: var(--royal-gold); color: var(--royal-gold); }
+
+.social-proof-container {
+    display: flex; flex-direction: column; align-items: center; gap: 15px;
+}
+.avatars-cluster { display: flex; align-items: center; }
+.avatar-circle {
+    width: 45px; height: 45px; border-radius: 50%;
+    border: 3px solid var(--royal-navy); object-fit: cover; margin-left: -15px;
+}
+.avatar-circle:first-child { margin-left: 0; }
+.avatar-circle.count {
+    background: #1e3a5f; color: white; display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700;
+}
+.stars { color: var(--royal-gold); margin-bottom: 5px; font-size: 0.9rem; }
+.proof-labels p { font-size: 0.9rem; color: var(--text-silver); }
+
+
+.hero-visual-wrapper {
+    position: relative; display: flex; justify-content: center;
+    perspective: 1200px;
+}
+
+.phone-mockup-premium {
+    width: 280px; height: 560px; position: relative;
+    transform-style: preserve-3d; z-index: 5;
+}
+
+.phone-bezel {
+    width: 100%; height: 100%; background: #000; border-radius: 40px;
+    box-shadow: inset 0 0 0 4px #333, inset 0 0 0 6px #111, 0 20px 50px rgba(0,0,0,0.7);
+    padding: 12px; position: relative; overflow: hidden;
+}
+
+.phone-screen-content {
+    width: 100%; height: 100%; border-radius: 30px; overflow: hidden;
+    position: relative; background: #050505;
+}
+.screen-img { width: 100%; height: 100%; object-fit: cover; }
+.screen-gradient {
+    position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+}
+.screen-info-badge {
+    position: absolute; bottom: 25px; left: 20px; z-index: 10;
+}
+.screen-info-badge .label {
+    background: var(--royal-gold); color: #000; padding: 4px 10px; border-radius: 4px;
+    font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+}
+.screen-info-badge h4 { color: white; font-size: 1.2rem; margin-top: 5px; }
+.phone-camera {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 25px;
+    background: #000; border-bottom-left-radius: 14px; border-bottom-right-radius: 14px; z-index: 20;
+}
+
+.floating-card-glass {
+    position: absolute; background: rgba(255, 255, 255, 0.9);
+    padding: 12px 18px; border-radius: 12px; display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); animation: float-y 4s ease-in-out infinite;
+    z-index: 6; min-width: 160px;
+}
+.card-top-left { top: 15%; left: -20px; }
+.card-bottom-right { bottom: 20%; right: -20px; animation-delay: 2s; }
+.icon-holder { font-size: 1.4rem; color: var(--royal-blue); }
+.text-holder { display: flex; flex-direction: column; line-height: 1.2; color: #000; }
+.text-holder strong { font-size: 0.85rem; }
+.text-holder span { font-size: 0.75rem; color: #555; }
+
+.visual-glow-backdrop {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 120%; height: 80%; background: radial-gradient(circle, rgba(0, 48, 96, 0.3), transparent 70%);
+    filter: blur(60px); z-index: 1;
+}
+
+/* =========================================
+   SEÇÃO 2: METODOLOGIA (ROYAL GLASS)
+   ========================================= */
+.royal-methodology-section {
+    padding: 100px 0;
+    background-color: #001225; 
+    position: relative;
+    overflow: hidden;
+}
+
+/* Luz Ambiente Dourada (Fundo) */
+.ambient-light-gold {
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.03), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Cabeçalho da Seção */
+.section-header-royal {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    position: relative; z-index: 2;
+}
+
+.royal-tag {
+    display: inline-block;
+    font-size: 0.85rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--royal-gold);
+    margin-bottom: 15px;
+}
+
+.section-header-royal h2 {
+    font-size: 2.2rem;
+    color: var(--text-white);
+    margin-bottom: 20px;
+}
+.section-header-royal .text-gold { color: var(--royal-gold); }
+
+.royal-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-silver);
+    line-height: 1.6;
+}
+
+/* Grid Layout */
+.royal-grid-3col {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 30px;
+    position: relative; z-index: 2;
+}
+
+/* --- CARD ROYAL (GLASS) --- */
+.royal-card-feature {
+    position: relative;
+    background: rgba(255, 255, 255, 0.02); 
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 40px 30px;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+/* Hover Effect */
+.royal-card-feature:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255, 215, 0, 0.3); 
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Número d'água Gigante (01, 02...) */
+.card-watermark {
+    position: absolute;
+    top: -20px; right: -10px;
+    font-size: 8rem;
+    font-weight: 900;
+    font-family: var(--font-heading);
+    color: rgba(255, 255, 255, 0.03);
+    z-index: 0;
+    line-height: 1;
+    pointer-events: none;
+    transition: transform 0.5s ease;
+}
+
+.royal-card-feature:hover .card-watermark {
+    transform: translateY(-10px) scale(1.1);
+    color: rgba(255, 215, 0, 0.05); 
+}
+
+/* Ícone */
+.card-icon-gold {
+    width: 60px; height: 60px;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    color: var(--royal-gold);
+    margin-bottom: 25px;
+    position: relative; z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.royal-card-feature:hover .card-icon-gold {
+    background: var(--royal-gold);
+    color: #000;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+/* Textos do Card */
+.royal-card-feature h3 {
+    font-size: 1.5rem; color: var(--text-white); margin-bottom: 15px;
+    position: relative; z-index: 1;
+}
+
+.royal-card-feature p {
+    color: var(--text-silver); font-size: 0.95rem; line-height: 1.6;
+    position: relative; z-index: 1;
+}
+
+/* Brilho na Borda (Efeito Extra Premium) */
+.card-border-shine {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 16px;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 0 rgba(255, 215, 0, 0);
+    transition: box-shadow 0.3s ease;
+}
+.royal-card-feature:hover .card-border-shine {
+    box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.05);
+}
+
+/* =========================================
+   SEÇÃO 3: CURSOS (ROYAL CAROUSEL) - MOBILE FIRST
+   ========================================= */
+
+/* 1. ESTRUTURA DA SEÇÃO (BASE) */
+.royal-courses-section {
+    padding: 60px 0 80px 0; 
+    background-color: var(--royal-navy); 
+    position: relative;
+    overflow: hidden; 
+}
+
+/* Container Fluido (Para o carrossel aproveitar a tela) */
+.container-fluid {
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+/* Ajuste do Swiper para não cortar sombras */
+.royal-course-slider {
+    padding: 20px 10px 60px 10px; 
+    overflow: visible !important;
+}
+
+/* 2. O CARD ROYAL (VERTICAL / POSTER) */
+.course-royal-card {
+    display: block;
+    position: relative;
+    height: 420px; 
+    border-radius: 16px;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition-smooth);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Wrapper da Imagem (Ocupa tudo) */
+.card-image-wrapper {
+    height: 100%; 
+    width: 100%; 
+    position: relative;
+}
+
+.card-image-wrapper img {
+    height: 100%; 
+    width: 100%; 
+    object-fit: cover; 
+    transition: transform 0.6s ease;
+}
+
+/* Overlay (Degradê para o texto ficar legível) */
+.card-overlay-gradient {
+    position: absolute; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    background: linear-gradient(to top, #001A35 15%, rgba(0, 26, 53, 0.4) 60%, transparent 100%);
+    z-index: 1;
+}
+
+/* Gradiente Especial Dourado (Apenas para o Instrutor) */
+.card-overlay-gold {
+    position: absolute; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    background: linear-gradient(to top, #001A35 20%, rgba(255, 215, 0, 0.15) 70%, transparent 100%);
+    z-index: 1;
+}
+
+/* Badge (Tag "Em Alta" / "Premium") */
+.card-badge {
+    position: absolute; 
+    top: 15px; right: 15px;
+    background: var(--royal-gold); 
+    color: #000;
+    padding: 4px 10px; 
+    border-radius: 4px;
+    font-size: 0.65rem; 
+    font-weight: 800; 
+    text-transform: uppercase;
+    z-index: 5;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* 3. CONTEÚDO DO CARD (TEXTOS) */
+.card-content-glass {
+    position: absolute; 
+    bottom: 0; left: 0; 
+    width: 100%;
+    padding: 20px;
+    z-index: 10; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+/* Ícone Dourado Pequeno */
+.icon-gold-small {
+    font-size: 1.1rem; 
+    color: var(--royal-gold); 
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+/* Título do Curso */
+.card-content-glass h3 {
+    font-size: 1.25rem; 
+    color: white; 
+    margin-bottom: 4px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* Descrição Curta */
+.card-content-glass p {
+    font-size: 0.85rem; 
+    color: var(--text-silver); 
+    margin-bottom: 15px;
+    line-height: 1.4; 
+    opacity: 0.9;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Botão "Link" Dourado */
+.btn-text-gold {
+    font-size: 0.8rem; 
+    font-weight: 700; 
+    color: var(--royal-gold);
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    display: flex; 
+    align-items: center; 
+    gap: 8px;
+    transition: gap 0.3s;
+}
+
+/* 4. PAGINAÇÃO (BOLINHAS) */
+.royal-course-slider .swiper-pagination-bullet { 
+    background: rgba(255,255,255,0.3); 
+    opacity: 1; 
+    width: 8px; height: 8px;
+    transition: all 0.3s;
+}
+.royal-course-slider .swiper-pagination-bullet-active { 
+    background: var(--royal-gold); 
+    width: 25px; 
+    border-radius: 10px; 
+}
+
+/* =========================================
+   SEÇÃO 4: DEPOIMENTOS (ROYAL REELS)
+   ========================================= */
+
+.royal-testimonials-section {
+    padding: 60px 0 80px 0;
+    background: radial-gradient(circle at 50% 0%, #001A35 0%, #000 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.royal-bg-dark {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+/* 1. COMPONENTE CARD (VERTICAL 9:16) */
+.testimonial-card.royal-reel-style {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16; /* Trava o formato vertical de Reels */
+    background: #000;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Destaque no slide centralizado */
+.swiper-slide-active .testimonial-card.royal-reel-style {
+    border-color: var(--royal-gold);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 215, 0, 0.2);
+    transform: scale(1.02);
+}
+
+/* 2. VÍDEO & INTERAÇÃO */
+.video-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Overlay para leitura do nome */
+.reel-overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 50%);
+    z-index: 2;
+    transition: opacity 0.4s ease;
+}
+
+.play-button-gold {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 215, 0, 0.2);
+    border: 1px solid #FFD700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFD700;
+    z-index: 5;
+    animation: pulse-button 2s infinite;
+}
+
+/* Animação Motion Designer */
+.play-button-gold::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border: 1px solid var(--royal-gold);
+    border-radius: 50%;
+    animation: ripple-gold 2s infinite;
+}
+
+@keyframes ripple-gold {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+
+/* --- SEÇÃO 4: DEPOIMENTOS (REEL STYLE FIX) --- */
+.reel-footer-content {
+    position: absolute;
+    bottom: 25px; 
+    left: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center; /* Alinha o selo na altura do nome */
+    justify-content: space-between; /* Empurra um para cada ponta */
+    gap: 10px; /* Espaço mínimo de segurança */
+    z-index: 10;
+    transition: all 0.4s ease;
+}
+
+.student-name-script {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #ffffff;
+    font-size: 1.6rem; 
+    margin: 0;
+    white-space: nowrap; 
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+.certified-badge-gold {
+    background-color: #FFD700;
+    color: #000000;
+    width: 38px;
+    height: 38px;
+    
+    border-radius: 50%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    font-size: 1.1rem; 
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    border: 2px solid rgba(0,0,0,0.1);
+    animation: float-badge 3s ease-in-out infinite;
+}
+
+/* 5. ESTADO PLAYING (DINAMISMO) */
+.video-container.playing .reel-overlay-gradient,
+.video-container.playing .play-button-gold,
+.video-container.playing ~ .reel-footer-content {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+}
+
+
+/* =========================================
+   SEÇÃO 5: ROYAL FOOTER (DESIGNER SÊNIOR)
+   ========================================= */
+
+.royal-footer {
+    padding: 80px 0 30px 0;
+    background-color: #000912; 
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.footer-ambient-glow {
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 48, 96, 0.3), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.footer-main-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+/* 1. COLUNA DA MARCA */
+.footer-logo {
+    height: 65px; 
+    width: auto;
+    margin-bottom: 25px;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+}
+
+.footer-description {
+    color: var(--text-silver);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    max-width: 400px;
+}
+
+/* Redes Sociais com Motion */
+.footer-social-wrapper {
+    display: flex;
+    gap: 15px;
+}
+
+.social-link-royal {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-white);
+    font-size: 1.2rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.social-link-royal:hover {
+    background: var(--royal-gold);
+    color: #000;
+    transform: translateY(-5px) rotate(8deg);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+}
+
+/* 2. LINKS E TÍTULOS */
+.footer-title {
+    color: var(--text-white);
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 30px;
+    height: 2px;
+    background: var(--royal-gold);
+}
+
+.footer-list li {
+    margin-bottom: 12px;
+}
+
+.footer-list a {
+    color: var(--text-silver);
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer-list a:hover {
+    color: var(--royal-gold);
+    padding-left: 5px;
+}
+
+.highlight-gold-link {
+    color: var(--royal-gold) !important;
+    font-weight: 700;
+}
+
+/* 3. CONTATO (ESTILO PREMIUM) */
+.contact-royal-list li {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.contact-royal-list i {
+    color: var(--royal-gold);
+    font-size: 1.3rem;
+    margin-top: 5px;
+}
+
+.contact-text span {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 1px;
+}
+
+.contact-text a, .contact-text p {
+    color: var(--text-white);
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+/* 4. MAPA (VIDRO 3D) */
+.google-map-container {
+    width: 100%;
+    height: 200px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    filter: grayscale(0.2) contrast(1.1);
+    transition: filter 0.5s ease;
+}
+
+.google-map-container:hover {
+    filter: grayscale(0) contrast(1);
+}
+
+/* 5. BARRA INFERIOR */
+.footer-bottom-bar {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column; 
+    gap: 15px;
+    text-align: center;
+}
+
+.footer-bottom-bar a {
+    color: var(--royal-gold);
+    font-weight: 600;
+}
+
+
+
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
+@keyframes shine-anim { 0% { left: -100%; } 20% { left: 100%; } 100% { left: 100%; } }
+@keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes pulse-button {
+    0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+}
+@keyframes float-badge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* =========================================
+   4. MEDIA QUERIES (DESKTOP CONSOLIDADO FINAL)
+   ========================================= */
+@media (min-width: 1024px) {
+    .glass-header { height: 110px; }
+    .logo-img { 
+        width: 90px !important; 
+        height: 90px !important; 
+        border-width: 3px;       
+    }
+    .mobile-menu-btn { display: none; } 
+    .nav-menu { display: block; }
+    .nav-list { display: flex; gap: 40px; }
+    .nav-link { font-weight: 600; color: var(--text-white); font-size: 0.95rem; position: relative; }
+    .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: var(--royal-gold); transition: width 0.3s; }
+    .nav-link:hover::after { width: 100%; }
+
+    .hero-royal-premium { padding-top: 140px; }
+    .hero-grid-layout { flex-direction: row; align-items: center; justify-content: space-between; gap: 40px; }
+    .hero-content-wrapper { text-align: left; margin: 0; flex: 1; max-width: 600px; }
+    .royal-headline { font-size: 3.5rem; }
+
+    .royal-headline .highlight-gold { 
+        color: #3182ce; 
+        text-shadow: 0 0 30px rgba(49, 130, 206, 0.2); 
+    }
+
+    .royal-cta-group { flex-direction: row; align-items: center; gap: 20px; }
+    .social-proof-container { flex-direction: row; gap: 20px; }
+    .hero-visual-wrapper { flex: 1; justify-content: flex-end; padding-right: 40px; }
+    .phone-mockup-premium { width: 320px; height: 640px; }
+    .card-top-left { left: -60px; top: 20%; }
+    .card-bottom-right { right: -40px; bottom: 25%; }
+
+    .royal-grid-3col { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .section-header-royal h2 { font-size: 3rem; }
+
+    .royal-courses-section { padding: 100px 0 140px 0; }
+    .container-fluid { max-width: 1400px; padding: 0 40px; }
+    .course-royal-card { height: 500px; }
+    .course-royal-card:hover {
+        transform: translateY(-15px);
+        border-color: var(--royal-gold); 
+        box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 15px rgba(255, 215, 0, 0.2); 
+    }
+    .course-royal-card:hover .card-image-wrapper img { transform: scale(1.1); }
+    .course-royal-card:hover .btn-text-gold { gap: 12px; }
+    .card-content-glass h3 { font-size: 1.5rem; }
+    .card-content-glass p { font-size: 0.95rem; }
+
+    .royal-testimonials-section { padding: 100px 0; }
+    .testimonial-card.royal-reel-style {
+        max-width: 320px; 
+        margin: 0 auto;
+        aspect-ratio: 9 / 16;
+    }
+    .reel-footer-content {
+        bottom: 30px;
+        left: 20px;
+        right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between; 
+        gap: 15px;
+    }
+    .student-name-script {
+        font-size: 2.3rem; 
+        text-shadow: 0 2px 15px rgba(0,0,0,0.9);
+    }
+    .certified-badge-gold {
+        width: 45px; 
+        height: 45px;
+        font-size: 1.3rem;
+    }
+
+    .footer-main-grid {
+        grid-template-columns: 1.2fr 0.8fr 1fr 1.2fr;
+        align-items: start;
+        gap: 40px;
+    }
+    .google-map-container { height: 250px; }
+    .footer-bottom-bar {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        margin-top: 60px;
+    }
+}
+
+/* =================================================================
+   TEMA LIGHT LUXURY (APENAS PARA A HOME)
+   Ativado pela classe .home-light-theme no body
+   ================================================================= */
+
+body.home-light-theme {
+    background-color: #F8F9FD; 
+    color: #001A35; 
+}
+
+body.home-light-theme .glass-header {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(0, 26, 53, 0.05);
+}
+
+body.home-light-theme .nav-link {
+    color: #001A35;
+}
+
+body.home-light-theme .bar {
+    background-color: #001A35;
+}
+
+body.home-light-theme .hero-royal-premium {
+    background: radial-gradient(circle at 50% 0%, #FFFFFF 0%, #EBF1F6 100%);
+}
+
+body.home-light-theme .royal-bg-effects,
+body.home-light-theme .effect-orb-blue,
+body.home-light-theme .effect-grid-pattern {
+    opacity: 0.05; 
+    filter: invert(1); 
+}
+
+body.home-light-theme .royal-headline {
+    color: #001A35;
+}
+
+body.home-light-theme .royal-badge {
+    background: rgba(0, 26, 53, 0.05); 
+    border-color: rgba(0, 26, 53, 0.1);
+}
+
+body.home-light-theme .royal-description {
+    color: #475569; 
+    font-weight: 500;
+}
+
+body.home-light-theme .btn-royal-secondary {
+    color: #001A35;
+    border-bottom: 1px solid rgba(0, 26, 53, 0.2);
+}
+
+body.home-light-theme .floating-card-glass {
+    background: #FFFFFF;
+    box-shadow: 0 15px 40px rgba(0, 26, 53, 0.15); 
+    border: 1px solid rgba(0,0,0,0.05);
+    color: #001A35;
+}
+body.home-light-theme .text-holder {
+    color: #001A35;
+}
+body.home-light-theme .text-holder span {
+    color: #64748b;
+}
+
+body.home-light-theme .royal-methodology-section {
+    background-color: #FFFFFF;
+}
+
+body.home-light-theme .section-header-royal h2 {
+    color: #001A35;
+}
+
+body.home-light-theme .royal-subtitle {
+    color: #475569;
+}
+
+body.home-light-theme .royal-card-feature {
+    background: #F8F9FD; 
+    border: 1px solid rgba(0, 26, 53, 0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03); 
+}
+
+body.home-light-theme .royal-card-feature h3 {
+    color: #001A35;
+}
+
+body.home-light-theme .royal-card-feature p {
+    color: #475569;
+}
+
+body.home-light-theme .card-watermark {
+    color: rgba(0, 26, 53, 0.03); 
+}
+
+body.home-light-theme .royal-courses-section {
+    background-color: #F1F5F9; 
+}
+
+body.home-light-theme .royal-testimonials-section {
+    background: linear-gradient(to bottom, #FFFFFF 0%, #F8F9FD 100%);
+}
+
+body.home-light-theme .royal-testimonials-section .royal-bg-dark {
+    display: none;
+}
+
+body.home-light-theme .royal-testimonials-section h2 {
+    color: #001A35;
+}
+
+body.home-light-theme .royal-testimonials-section .royal-subtitle {
+    color: #475569;
+}
+
+body.home-light-theme .testimonial-card.royal-reel-style {
+    box-shadow: 0 20px 40px rgba(0, 26, 53, 0.15); 
+    border: 1px solid rgba(0,0,0,0.1); 
+}
+
+body.home-light-theme .swiper-slide-active .testimonial-card.royal-reel-style {
+    box-shadow: 0 30px 60px rgba(0, 26, 53, 0.25); 
+    border-color: var(--royal-gold); 
+}
+
+body.home-light-theme .glass-header {
+    background-color: rgba(255, 255, 255, 0.95) !important; 
+    border-bottom: 1px solid rgba(0, 26, 53, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); 
+}
+
+body.home-light-theme .nav-link {
+    color: #001A35 !important; 
+    font-weight: 700 !important; 
+    font-size: 1rem !important; 
+}
+
+body.home-light-theme .nav-link:hover {
+    color: #FFD700 !important; 
+}
+
+body.home-light-theme .bar {
+    background-color: #001A35 !important;
+}
+
+body.home-light-theme .proof-labels p {
+    color: #001A35 !important; 
+    font-weight: 600; 
+}
+
+body.home-light-theme .proof-labels p strong {
+    color: #001A35 !important;
+}
+
+body.home-light-theme .footer-bottom-bar p {
+    color: #E2E8F0 !important; 
+    opacity: 0.8;
+}
+
+body.home-light-theme .developer-credit a {
+    color: #FFD700 !important; 
+    text-decoration: none;
+}
+
+body.home-light-theme .footer-description,
+body.home-light-theme .footer-list a,
+body.home-light-theme .contact-text p,
+body.home-light-theme .contact-text span {
+    color: #E2E8F0 !important; 
+}
+
+/* --- TAGS DE SEÇÃO (MAIS PRESENÇA NO FUNDO BRANCO) --- */
+body.home-light-theme .royal-tag {
+    font-size: 1.1rem !important; 
+    letter-spacing: 3px !important; 
+    font-weight: 800 !important; 
+    margin-bottom: 20px; 
+}

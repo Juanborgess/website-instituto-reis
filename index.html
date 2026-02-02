@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Instituto Reis - Cursos Profissionalizantes da área da beleza</title>
+    <meta name="description"
+        content="Formação profissional em barbeiro, trança, lash designer e sobrancelha e educador. Metodologia 80% prática com certificado reconhecido em todo território nacional.">
+    <meta name="author" content="Instituto Reis">
+    <meta name="keywords"
+        content="curso de barbeiro, curso de trancista, curso de sobrancelha, instituto reis, rj, formação profissional">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://institutoreiscursos.com.br/">
+    <meta property="og:title" content="Instituto Reis - Cursos Profissionalizantes">
+    <meta property="og:description"
+        content="Metodologia 80% prática. Saia pronto para o mercado de trabalho. Certificado reconhecido nacionalmente.">
+    <meta property="og:image" content="./assets/img/og-image.jpg">
+    <link rel="shortcut icon" href="./assets/img/logo.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="./css/style.css?v=8">
+</head>
+
+<body class="home-light-theme">
+
+    <header id="header" class="glass-header">
+        <div class="container header-content">
+            <a href="#" class="logo-link">
+                <img src="./assets/img/logo.png" alt="Instituto Reis" class="logo-img">
+            </a>
+
+            <nav class="nav-menu hide-mobile">
+                <ul class="nav-list">
+                    <li><a href="#hero" class="nav-link">Início</a></li>
+                    <li><a href="#metodologia" class="nav-link">A Escola</a></li>
+                    <li><a href="#cursos" class="nav-link">Nossos Cursos</a></li>
+                    <li><a href="#footer" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="https://wa.me/5521966666335" target="_blank" class="btn-header-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> <span class="btn-text hide-mobile">Falar Agora</span>
+                </a>
+
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <div class="bar bar-1"></div>
+                    <div class="bar bar-2"></div>
+                    <div class="bar bar-3"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <ul class="mobile-nav-list">
+            <li><a href="#hero" class="mobile-nav-link">Início</a></li>
+            <li><a href="#metodologia" class="mobile-nav-link" onclick="toggleMenu()">A Escola</a></li>
+            <li><a href="#cursos" class="mobile-nav-link" onclick="toggleMenu()">Nossos Cursos</a></li>
+            <li><a href="#footer" class="mobile-nav-link" onclick="toggleMenu()">Contato</a></li>
+        </ul>
+    </div>
+
+    <main>
+
+       <section id="hero" class="hero-royal-premium">
+        
+        <div class="royal-bg-effects">
+            <div class="effect-orb-blue"></div>
+            <div class="effect-grid-pattern"></div>
+        </div>
+
+        <div class="container">
+            <div class="hero-grid-layout">
+                
+                <div class="hero-content-wrapper" data-aos="fade-right" data-aos-duration="1000">
+                    
+                    <div class="royal-badge">
+                        <div class="badge-icon">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <span>Método Validado por +1.000 Alunos</span>
+                    </div>
+
+                    <h1 class="royal-headline">
+                        Não aprenda com amadores. <br>
+                        Cresça ao lado de quem <span class="highlight-gold">Domina o Mercado</span>
+                    </h1>
+
+                    <p class="royal-description">
+                        O <strong>Instituto Reis</strong> aplica a metodologia exclusiva desenvolvida por Lucas e Dryelly. 
+                        Tenha acesso a um ensino de elite que entrega o mapa completo para você sair do zero e 
+                        conquista sua liberdade financeira.
+                    </p>
+
+                    <div class="royal-cta-group">
+                        <a href="https://wa.me/5521966666335" target="_blank" class="btn-royal-primary">
+                            <span>QUERO MINHA VAGA AGORA</span>
+                            <div class="btn-shine"></div>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#cursos" class="btn-royal-secondary">
+                            Conhecer os Cursos
+                        </a>
+                    </div>
+
+                    <div class="social-proof-container">
+                        <div class="avatars-cluster">
+                            <img src="./assets/img/cursos/braid-card.jpg" alt="Aluno" class="avatar-circle">
+                            <img src="./assets/img/cursos/brow-card.jpg" alt="Aluno" class="avatar-circle">
+                            <img src="./assets/img/cursos/lash-card.jpg" alt="Aluno" class="avatar-circle">
+                            <div class="avatar-circle count">
+                                <span>+1k</span>
+                            </div>
+                        </div>
+                        <div class="proof-labels">
+                            <div class="stars">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p><strong>4.9/5</strong> de satisfação dos alunos</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="hero-visual-wrapper" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1200">
+                    
+                    <div class="phone-mockup-premium" data-tilt data-tilt-max="5" data-tilt-speed="1000">
+                        
+                        <div class="phone-bezel">
+                            <div class="phone-camera"></div>
+                            <div class="phone-screen-content">
+                                <img src="./assets/img/hero-home-owners.jpg" alt="Lucas e Dyerly" class="screen-img">
+                                <div class="screen-gradient"></div>
+                                
+                                <div class="screen-info-badge">
+                                    <span class="label">Fundadores</span>
+                                    <h4>Lucas & Dyerly</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="floating-card-glass card-top-left">
+                            <div class="icon-holder">
+                                <i class="fa-solid fa-certificate"></i>
+                            </div>
+                            <div class="text-holder">
+                                <strong>Certificado</strong>
+                                <span>Reconhecido</span>
+                            </div>
+                        </div>
+
+                        <div class="floating-card-glass card-bottom-right">
+                            <div class="icon-holder">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <div class="text-holder">
+                                <strong>Ensino de</strong>
+                                <span>Excelência</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="visual-glow-backdrop"></div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+        <section id="metodologia" class="royal-methodology-section">
+        
+        <div class="ambient-light-gold"></div>
+
+        <div class="container">
+
+            <div class="section-header-royal" data-aos="fade-up">
+                <span class="royal-tag">Nosso Diferencial</span>
+                <h2>Por que o <span class="text-gold">Instituto Reis</span> forma os melhores?</h2>
+                <p class="royal-subtitle">
+                    Não ensinamos apenas a técnica. Ensinamos a postura, o atendimento e a
+                    visão de negócio que o mercado de luxo exige.
+                </p>
+            </div>
+
+            <div class="royal-grid-3col">
+
+                <div class="royal-card-feature" data-tilt data-tilt-max="5" data-tilt-speed="400" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-watermark">01</div>
+                    <div class="card-icon-gold">
+                        <i class="fa-solid fa-scissors"></i>
+                    </div>
+                    <h3>80% Prática Real</h3>
+                    <p>A teoria é importante, mas a mão na massa é essencial. Você executa cortes e técnicas sob supervisão rigorosa.</p>
+                    <div class="card-border-shine"></div>
+                </div>
+
+                <div class="royal-card-feature" data-tilt data-tilt-max="5" data-tilt-speed="400" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-watermark">02</div>
+                    <div class="card-icon-gold">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3>Modelos & Ação Social</h3>
+                    <p>Nada de treinar apenas em bonecos. Fornecemos modelos reais e realizamos ações sociais constantes para você perder o medo.</p>
+                    <div class="card-border-shine"></div>
+                </div>
+
+                <div class="royal-card-feature" data-tilt data-tilt-max="5" data-tilt-speed="400" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-watermark">03</div>
+                    <div class="card-icon-gold">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <h3>Visão de Mercado</h3>
+                    <p>Técnica sem gestão não dá lucro. Aprenda postura profissional e como fidelizar clientes para ter agenda cheia.</p>
+                    <div class="card-border-shine"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+        <section id="cursos" class="royal-courses-section">
+        
+        <div class="container-fluid"> <div class="section-header-royal center-mode" data-aos="fade-up">
+                <span class="royal-tag">Formação de Elite</span>
+                <h2>Escolha o Seu <span class="text-gold">Futuro</span></h2>
+                <p class="royal-subtitle">Certificações reconhecidas nacionalmente para você dominar o mercado.</p>
+            </div>
+
+            <div class="swiper royal-course-slider" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <a href="curso-barbeiro.html" class="course-royal-card">
+                            <div class="card-image-wrapper">
+                                <img src="./assets/img/cursos/barber-card.jpg" alt="Curso de Barbeiro">
+                                <div class="card-overlay-gradient"></div>
+                                <div class="card-badge">Em Alta</div>
+                            </div>
+                            <div class="card-content-glass">
+                                <div class="icon-gold-small">
+                                    <i class="fa-solid fa-scissors"></i>
+                                </div>
+                                <h3>Barbeiro Profissional</h3>
+                                <p>Domine cortes, barba e gestão.</p>
+                                <span class="btn-text-gold">Ver Detalhes <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <a href="curso-trancista.html" class="course-royal-card">
+                            <div class="card-image-wrapper">
+                                <img src="./assets/img/cursos/braid-card.jpg" alt="Curso de Trancista">
+                                <div class="card-overlay-gradient"></div>
+                            </div>
+                            <div class="card-content-glass">
+                                <div class="icon-gold-small">
+                                    <i class="fa-solid fa-spa"></i>
+                                </div>
+                                <h3>Trancista Profissional</h3>
+                                <p>Da nagô às box braids artísticas.</p>
+                                <span class="btn-text-gold">Ver Detalhes <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <a href="curso-sobrancelha.html" class="course-royal-card">
+                            <div class="card-image-wrapper">
+                                <img src="./assets/img/cursos/brow-card.jpg" alt="Curso de Sobrancelhas">
+                                <div class="card-overlay-gradient"></div>
+                            </div>
+                            <div class="card-content-glass">
+                                <div class="icon-gold-small">
+                                    <i class="fa-regular fa-eye"></i>
+                                </div>
+                                <h3>Designer Sobrancelhas</h3>
+                                <p>Simetria facial e mapeamento.</p>
+                                <span class="btn-text-gold">Ver Detalhes <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <a href="curso-cilios.html" class="course-royal-card">
+                            <div class="card-image-wrapper">
+                                <img src="./assets/img/cursos/lash-card.jpg" alt="Curso de Cílios">
+                                <div class="card-overlay-gradient"></div>
+                                <div class="card-badge">Premium</div>
+                            </div>
+                            <div class="card-content-glass">
+                                <div class="icon-gold-small">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                </div>
+                                <h3>Lash Designer</h3>
+                                <p>Extensão fio a fio e Fios Tecnológicos.</p>
+                                <span class="btn-text-gold">Ver Detalhes <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <a href="curso-instrutor.html" class="course-royal-card special-card">
+                            <div class="card-image-wrapper">
+                                <img src="./assets/img/hero-home-owners.jpg" alt="Seja Instrutor"> 
+                                <div class="card-overlay-gold"></div>
+                            </div>
+                            <div class="card-content-glass">
+                                <div class="icon-gold-small">
+                                    <i class="fa-solid fa-chalkboard-user"></i>
+                                </div>
+                                <h3>Seja um Instrutor</h3>
+                                <p>Ensine e multiplique seu faturamento.</p>
+                                <span class="btn-text-gold">Saiba Mais <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+                
+                <div class="swiper-pagination"></div>
+            </div>
+
+        </div>
+    </section>
+
+       <section id="depoimentos" class="royal-testimonials-section">
+        
+        <div class="royal-bg-dark"></div>
+
+        <div class="container">
+            
+            <div class="section-header-royal center-mode" data-aos="fade-up">
+                <span class="royal-tag">Resultados Reais</span>
+                <h2>Histórias de <span class="text-gold">Sucesso</span></h2>
+                <p class="royal-subtitle">Veja nossos alunos dominando o mercado após a certificação.</p>
+            </div>
+
+            <div class="swiper video-slider-vertical" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card royal-reel-style">
+                            <div class="video-container">
+                                <video 
+                                    src="./assets/img/video/depoimento-barbeiro.mp4" 
+                                    poster="./assets/img/cursos/barber-card.jpg" 
+                                    playsinline webkit-playsinline loop>
+                                </video>
+                                <div class="reel-overlay-gradient"></div>
+                                
+                                <div class="play-button-gold">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>
+
+                            <div class="reel-footer-content">
+                                <h3 class="student-name-script">Emerson</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card royal-reel-style">
+                            <div class="video-container">
+                                <video 
+                                    src="./assets/img/video/depoimento-tranca-1.mp4" 
+                                    poster="./assets/img/cursos/braid-card.jpg" 
+                                    playsinline webkit-playsinline loop>
+                                </video>
+                                <div class="reel-overlay-gradient"></div>
+                                <div class="play-button-gold">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>
+
+                            <div class="reel-footer-content">
+                                <h3 class="student-name-script">Mauriceia</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card royal-reel-style">
+                            <div class="video-container">
+                                <video 
+                                    src="./assets/img/video/depoimento-sobrancelha-1.mp4" 
+                                    poster="./assets/img/cursos/imagem-depoimento-sobrancelha-1.png" 
+                                    playsinline webkit-playsinline loop>
+                                </video>
+                                <div class="reel-overlay-gradient"></div>
+                                <div class="play-button-gold">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>
+
+                            <div class="reel-footer-content">
+                                <h3 class="student-name-script">Drielle</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card royal-reel-style">
+                            <div class="video-container">
+                                <video 
+                                    src="./assets/img/video/depoimento-cilios-3.MP4" 
+                                    poster="./assets/img/cursos/image-depoimento-cilios-3.png" 
+                                    playsinline webkit-playsinline loop>
+                                </video>
+                                <div class="reel-overlay-gradient"></div>
+                                <div class="play-button-gold">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>
+
+                            <div class="reel-footer-content">
+                                <h3 class="student-name-script">Gabriely</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="swiper-pagination"></div>
+            </div>
+
+        </div>
+    </section>
+
+    </main>
+
+    <footer id="footer" class="royal-footer">
+        
+        <div class="footer-ambient-glow"></div>
+
+        <div class="container">
+            <div class="footer-main-grid">
+                
+                <div class="footer-col brand-info">
+                    <img src="./assets/img/logo.png" alt="Instituto Reis" class="footer-logo">
+                    <p class="footer-description">
+                        Formando profissionais de elite para o mercado da beleza. 
+                        Metodologia prática, certificado nacional e visão de negócios.
+                    </p>
+                    <div class="footer-social-wrapper">
+                        <a href="https://www.instagram.com/institutoreis__/" target="_blank" class="social-link-royal">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link-royal">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@institutoreis" target="_blank" class="social-link-royal">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col nav-links">
+                    <h4 class="footer-title">Navegação</h4>
+                    <ul class="footer-list">
+                        <li><a href="#hero">Início</a></li>
+                        <li><a href="#metodologia">A Escola</a></li>
+                        <li><a href="#cursos">Cursos</a></li>
+                        <li><a href="#depoimentos">Alunos</a></li>
+                        <li><a href="curso-instrutor.html" class="highlight-gold-link">Seja Instrutor</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col contact-info">
+                    <h4 class="footer-title">Fale Conosco</h4>
+                    <ul class="contact-royal-list">
+                        <li>
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <div class="contact-text">
+                                <span>Matrículas & Dúvidas</span>
+                                <a href="https://wa.me/5521966666335" target="_blank"><strong>(21) 96666-6335</strong></a>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div class="contact-text">
+                                <span>Nosso Endereço</span>
+                                <p>Rua Retiro dos Artistas, 390 - Pechincha<br>Rio de Janeiro - RJ</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-regular fa-envelope"></i>
+                            <div class="contact-text">
+                                <span>E-mail Corporativo</span>
+                                <a href="mailto:lcreis10101997@gmail.com">lcreis10101997@gmail.com</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-col map-box">
+                    <h4 class="footer-title">Onde Estamos</h4>
+                    <div class="google-map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.247545934571!2d-43.348633!3d-22.91427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd8f0f0f0f0f0f%3A0x0!2zUnVhIFJldGlybyBkb3MgQXJ0aXN0YXMsIDM5MCAtIFBlY2hpbmNoYSwgUmlvIGRlIEphbmVpcm8gLSBSSiwgMjI3NzAtMDAx!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom-bar">
+                <div class="copyright-text">
+                    <p>© 2026 <strong>Instituto Reis</strong>. Todos os direitos reservados.</p>
+                </div>
+                <div class="developer-credit">
+                    <p>Desenvolvido por <a href="https://elitepagesolutions.com.br/" target="_blank">Juan Borges</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+    <script src="./js/main.js?v=8"></script>
+
+    <script>
+        // Inicia o AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+
+</html>

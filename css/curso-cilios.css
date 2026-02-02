@@ -1,0 +1,1543 @@
+/* =================================================================
+   INSTITUTO REIS - CURSO CÍLIOS (ROYAL GOLD ARCHITECTURE)
+   ================================================================= */
+
+/* 1. VARIÁVEIS DE CORES (A Paleta de Ouro) */
+:root {
+    --gold-primary: #D4AF37;   
+    --gold-light: #FCD34D;     
+    --gold-dark: #B45309;      
+    --black-bg: #050505;       
+    --black-card: #0a0a0a;     
+    --text-muted: #CBD5E0;     
+    
+    --font-main: 'Montserrat', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+}
+
+/* 2. RESET BÁSICO & CORPO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================================
+   HEADER (GLASS LUXURY NAVIGATION)
+   ========================================= */
+
+.glass-header {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    z-index: 1000; 
+    background: rgba(5, 5, 5, 0.9); 
+    backdrop-filter: blur(12px);     
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15); 
+    transition: all 0.3s ease;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 15px 20px;
+    max-width: 1200px; 
+    margin: 0 auto;
+    height: 80px; 
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin-right: 20px; 
+    z-index: 10;
+}
+
+.logo-img {
+    height: 50px;       
+    width: 50px;        
+    object-fit: contain; 
+    background-color: #fff; 
+    border-radius: 50%;     
+    border: 2px solid var(--gold-primary); 
+    padding: 2px;       
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); 
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover .logo-img {
+    transform: rotate(10deg) scale(1.05); 
+}
+
+.hide-mobile {
+    display: none !important;
+}
+
+.mobile-menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px; height: 20px;
+    cursor: pointer;
+}
+
+.bar {
+    width: 100%; height: 2px;
+    background-color: var(--gold-primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.btn-header-whatsapp {
+    display: none; 
+}
+
+/* =========================================
+   LOGICA DO MENU MOBILE (ABRIR/FECHAR)
+   ========================================= */
+
+.nav-menu.hide-mobile {
+    display: block !important;
+    position: fixed;
+    top: 80px; 
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: rgba(5, 5, 5, 0.98);
+    backdrop-filter: blur(15px);
+    overflow: hidden;
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    border-bottom: 0px solid transparent; 
+}
+
+.nav-menu.active {
+    height: 350px; 
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2); 
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    height: 100%;
+    list-style: none;
+    padding: 20px 0;
+}
+
+.nav-link {
+    font-size: 1.2rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.mobile-menu-btn.active .bar-1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.mobile-menu-btn.active .bar-2 {
+    opacity: 0; 
+}
+
+.mobile-menu-btn.active .bar-3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body.lp-lashes-body {
+    background-color: var(--black-bg);
+    color: #fff;
+    font-family: var(--font-main);
+    overflow-x: hidden; 
+    line-height: 1.5;
+}
+
+.serif-font { font-family: var(--font-serif); }
+
+/* =========================================
+   3. HERO SECTION (PRIMEIRA DOBRA)
+   ========================================= */
+
+.hero-lashes-theme {
+    position: relative;
+    min-height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 20px 60px 20px; 
+    background-color: var(--black-bg);
+    overflow: hidden;
+}
+
+.gold-luxury-bg { position: absolute; inset: 0; z-index: 0; }
+.gold-dust { position: absolute; inset: 0; opacity: 0.4; pointer-events: none; }
+
+.layer-1 {
+    background-image: radial-gradient(var(--gold-light) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: goldFloat 25s linear infinite;
+}
+
+.layer-2 {
+    background-image: radial-gradient(rgba(212, 175, 55, 0.6) 2px, transparent 2px);
+    background-size: 90px 90px;
+    background-position: 50px 50px;
+    animation: goldFloat 35s linear infinite reverse;
+    opacity: 0.3;
+}
+
+.gold-gradient-overlay {
+    position: absolute; bottom: 0; left: 0; width: 100%; height: 60%;
+    background: linear-gradient(to top, var(--black-bg) 10%, transparent);
+    z-index: 1;
+}
+
+@keyframes goldFloat {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100px); }
+}
+
+.center-mode-hero {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lp-text-wrapper {
+    max-width: 100%;
+    width: 100%;
+}
+
+.niche-badge.gold-theme {
+    display: inline-flex;
+    align-items: center; gap: 8px;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+    margin-bottom: 25px;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+}
+
+.hero-lashes-theme h1 {
+    font-size: clamp(2.1rem, 7vw, 3.5rem); 
+    line-height: 1.2;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.italic-gold {
+    display: inline; 
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold-primary);
+}
+
+.text-highlight-gold {
+    display: inline-block; 
+    background: linear-gradient(to right, #BF953F, #FCF6BA, #AA771C);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 900;
+}
+
+.hero-lashes-theme p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 500px; 
+    margin: 0 auto 35px auto;
+}
+
+.hero-lashes-theme strong {
+    color: var(--gold-light);
+    font-weight: 600;
+}
+
+.lp-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.btn-gold-shine {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%; 
+    max-width: 380px; 
+    padding: 20px 25px;
+    background: linear-gradient(to bottom, #FCEeb5 0%, #D4AF37 100%);
+    color: #1a1a1a;
+    font-size: 0.95rem; 
+    font-weight: 800;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 60px;
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25);
+    transition: transform 0.3s ease;
+    
+    white-space: nowrap; 
+}
+
+/* =========================================
+   NOVA SEÇÃO: GALERIA DE RESULTADOS (REAL LASHES)
+   ========================================= */
+
+.real-lashes-gallery {
+    position: relative;
+    padding: 80px 0 100px 0; 
+    background-color: var(--black-bg);
+    overflow: hidden;
+}
+
+.gold-ambient-light {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140%; 
+    height: 120%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.05), transparent 65%);
+    filter: blur(90px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.real-lashes-gallery .section-header {
+    margin-bottom: 60px; 
+    padding: 0 25px; 
+}
+
+.real-lashes-gallery h2 {
+    font-size: clamp(2.4rem, 8vw, 3.2rem); 
+    line-height: 1.2; 
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.real-lashes-gallery p {
+    font-size: 1.15rem; 
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-top: 15px;
+    max-width: 600px;
+}
+
+.niche-badge.gold-theme {
+    font-size: 0.9rem; 
+    padding: 10px 22px;
+    margin-bottom: 30px;
+}
+
+.resultsSwiper {
+    width: 100%;
+    padding: 10px 0 70px 0 !important; 
+    overflow: visible !important; 
+    z-index: 2;
+}
+
+.result-card-gold {
+    position: relative;
+    width: 75vw; 
+    max-width: 300px; 
+    aspect-ratio: 9 / 16;
+    margin: 0 auto; 
+    
+    border-radius: 24px;
+    background: #000;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.9);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card-label {
+    position: absolute;
+    top: 20px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    
+    background: rgba(10, 10, 10, 0.85); 
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    
+    color: var(--gold-light);
+    font-size: 0.8rem; 
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px; 
+    
+    padding: 8px 18px; 
+    border-radius: 40px;
+    white-space: nowrap;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+.video-container-click {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    cursor: pointer;
+    border-radius: 23px; 
+    overflow: hidden;
+}
+
+.result-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.9; 
+    transition: opacity 0.3s ease;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    z-index: 5;
+}
+
+.btn-play-gold {
+    width: 70px; height: 70px; 
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.9); 
+    border: 2px solid #fff; 
+    
+    display: flex; align-items: center; justify-content: center;
+    color: #000; 
+    font-size: 1.8rem;
+    padding-left: 6px; 
+    
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: pulseGoldBtn 2.5s infinite;
+}
+
+@keyframes pulseGoldBtn {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(212, 175, 55, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+.video-container-click:active .btn-play-gold {
+    transform: scale(0.9);
+}
+
+.video-container-click.playing .play-overlay,
+.video-container-click.playing .card-label {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.video-container-click.playing .result-video {
+    opacity: 1; 
+}
+
+.swiper-pagination-bullet {
+    background: #fff; 
+    opacity: 0.2;
+    width: 8px; height: 8px;
+    margin: 0 6px !important;
+    transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--gold-primary);
+    width: 30px; 
+    border-radius: 10px; 
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+}
+
+
+/* =========================================
+   3. SEÇÃO DIFERENCIAL (GOLDEN TECHNIQUE)
+   ========================================= */
+
+.lashes-diff-section {
+    position: relative;
+    padding: 80px 0;
+    background-color: #080600; 
+    overflow: hidden;
+}
+
+.side-glow-gold {
+    position: absolute;
+    top: 20%; left: -20%;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.15), transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+}
+
+.lashes-diff-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    position: relative; z-index: 1;
+}
+
+.diff-visual-gold {
+    display: flex; justify-content: center;
+    position: relative;
+}
+
+.gold-frame-card {
+    position: relative;
+    width: 100%;
+    max-width: 340px; 
+    height: 400px; 
+    background: linear-gradient(145deg, rgba(20, 15, 5, 0.9), rgba(0, 0, 0, 0.95));
+    border: 1px solid rgba(212, 175, 55, 0.3); 
+    border-radius: 100px 100px 20px 20px; 
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    display: flex; align-items: center; justify-content: center;
+    overflow: visible; 
+}
+
+.frame-border-inner {
+    position: absolute;
+    inset: 15px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: 90px 90px 10px 10px;
+    pointer-events: none;
+}
+
+.central-icon-gold {
+    font-size: 6rem;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(212, 175, 55, 0.2); 
+    opacity: 0.6;
+}
+
+.tech-point {
+    position: absolute;
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 8px 14px;
+    border-radius: 30px;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    animation: floatPoint 6s infinite ease-in-out;
+    z-index: 2;
+}
+
+.point-1 { top: 20%; right: -15px; animation-delay: 0s; }
+.point-2 { top: 50%; left: -15px; animation-delay: 2s; }
+.point-3 { bottom: 15%; right: 0px; animation-delay: 4s; }
+
+.point-dot {
+    width: 6px; height: 6px;
+    background-color: var(--gold-light);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--gold-light);
+}
+
+.point-label {
+    font-size: 0.7rem; color: #fff; font-weight: 600; text-transform: uppercase;
+}
+
+@keyframes floatPoint {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.diff-content-gold {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+    text-align: center;
+    padding: 0 10px;
+}
+
+.section-tag-gold {
+    display: inline-block;
+    align-self: center; 
+    font-size: 0.95rem; 
+    font-weight: 800;
+    letter-spacing: 3px;
+    border-bottom-width: 2px;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--gold-light);
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(252, 211, 77, 0.3);
+    padding-bottom: 5px;
+}
+
+.diff-content-gold h2 {
+    font-size: 2.2rem;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 25px;
+}
+
+.gold-copy {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 500px; 
+}
+
+.pillars-list {
+    display: flex; flex-direction: column; gap: 20px;
+    width: 100%;
+}
+
+.pillar-item {
+    display: flex; gap: 15px; align-items: flex-start;
+    text-align: left; 
+    background: rgba(255, 255, 255, 0.02);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pillar-icon {
+    width: 45px; height: 45px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    color: var(--gold-light);
+}
+
+.pillar-text h4 {
+    font-size: 1.1rem; color: #fff; margin-bottom: 4px; font-weight: 600;
+}
+.pillar-text p {
+    font-size: 0.9rem; color: #9ca3af; line-height: 1.4;
+}
+
+/* =========================================
+   4. SEÇÃO GRADE CURRICULAR (THE MASTER CURRICULUM)
+   ========================================= */
+
+.curriculum-lashes {
+    position: relative;
+    padding: 80px 0;
+    background-color: var(--black-bg);
+    overflow: hidden;
+}
+
+.bg-lines-gold {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.line-v {
+    position: absolute;
+    top: 0; height: 100%; width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.2), transparent);
+}
+.v1 { left: 15%; }
+.v2 { right: 15%; }
+
+.curriculum-lashes .section-header {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+    padding: 0 20px;
+}
+
+.curriculum-lashes h2 {
+    font-size: clamp(2.2rem, 8vw, 3rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 15px;
+}
+
+.curriculum-lashes p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.lashes-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 25px;
+    padding: 0 20px;
+}
+
+.lashes-card {
+    background: #0d0d0d;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 35px 25px;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.lashes-card:hover {
+    transform: translateY(-8px);
+    background: #121212;
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.card-featured {
+    border: 1px solid rgba(214, 158, 46, 0.4);
+    background: linear-gradient(145deg, rgba(214, 158, 46, 0.05), #0a0a0a);
+    position: relative;
+}
+
+.card-border-gold {
+    position: absolute;
+    top: 0; left: 30px; right: 30px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+}
+
+.card-icon-gold {
+    font-size: 2.2rem;
+    color: var(--gold-light);
+    margin-bottom: 20px;
+}
+
+.card-content h3 {
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.card-content p {
+    font-size: 0.95rem;
+    color: #a0a0a0;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.gold-check-list {
+    list-style: none;
+    margin-top: auto; 
+}
+
+.gold-check-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: #e2e8f0;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.gold-check-list li:last-child { border-bottom: none; }
+
+.gold-check-list i {
+    color: var(--gold-light);
+    font-size: 0.85rem;
+}
+
+.curriculum-cta-gold {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.link-gold-underline {
+    color: var(--gold-light);
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+    padding-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+.link-gold-underline:hover {
+    color: #fff;
+    border-color: #fff;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   5. SEÇÃO DEPOIMENTOS (ROYAL REEL STORIES)
+   ========================================= */
+
+.testimonials-lashes {
+    padding: 80px 0;
+    background: linear-gradient(to bottom, var(--black-bg), #0a0800);
+    position: relative;
+    overflow: hidden;
+}
+
+
+.bg-glow-center-gold {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; max-width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent 70%);
+    filter: blur(80px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.testimonials-lashes .section-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-bottom: 50px;
+    padding: 0 20px;
+}
+
+.testimonials-lashes h2 {
+    color: #fff !important;
+    font-size: clamp(2.2rem, 8vw, 2.8rem);
+    margin-bottom: 15px;
+    line-height: 1.1;
+}
+
+.testimonials-lashes p {
+    color: var(--text-muted) !important;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.videoSwiper {
+    width: 100%;
+    padding: 20px 0 60px 0 !important;
+    overflow: visible !important; 
+}
+
+.video-card-frame {
+    position: relative;
+    width: 100%;
+    max-width: 320px; 
+    margin: 0 auto;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: translateZ(0); 
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    background: #000;
+    cursor: pointer;
+}
+
+.story-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.video-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 40%);
+    z-index: 2;
+    transition: opacity 0.4s ease;
+}
+
+.play-button-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    transition: opacity 0.4s ease;
+}
+
+.gold-play {
+    width: 65px; height: 65px;
+    background: rgba(212, 175, 55, 0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--gold-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold-light);
+    font-size: 1.6rem;
+    padding-left: 4px;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+    animation: pulseGold 2s infinite;
+}
+
+@keyframes pulseGold {
+    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); transform: scale(1); }
+    70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); transform: scale(1.05); }
+    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); transform: scale(1); }
+}
+
+.student-info {
+    position: absolute;
+    bottom: 25px; left: 20px; right: 20px;
+    z-index: 4;
+    transition: opacity 0.4s ease;
+    text-align: left;
+}
+
+.student-name {
+    display: block;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.student-result.gold-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.7rem;
+    background: linear-gradient(90deg, var(--gold-primary), var(--gold-light));
+    color: #000;
+    font-weight: 800;
+    padding: 6px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.video-wrapper.playing .play-button-overlay,
+.video-wrapper.playing .video-overlay,
+.video-wrapper.playing .student-info {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.swiper-pagination-bullet { background: #fff; opacity: 0.3; }
+.swiper-pagination-bullet-active {
+    background: var(--gold-light);
+    width: 25px; border-radius: 10px; opacity: 1;
+}
+
+/* =========================================
+   6. SEÇÃO OFERTA (GOLDEN VIP CHECKOUT)
+   ========================================= */
+
+.offer-section-lashes {
+    position: relative;
+    padding: 80px 0;
+    background-color: #020000;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Background Elements */
+.gold-luxury-bg-offer {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.gold-spotlight {
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent 70%);
+    filter: blur(80px);
+}
+
+.offer-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 0 20px;
+}
+
+/* --- LADO DO PITCH (CONVENCIMENTO) --- */
+.offer-pitch {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centralização Mobile exata */
+}
+
+.scarcity-tag-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--gold-light);
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 18px;
+    border-radius: 4px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    margin-bottom: 25px;
+}
+
+.offer-pitch h2 {
+    font-size: 2.2rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.offer-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 500px;
+}
+
+/* Métodos de Pagamento Mobile */
+.payment-methods-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Uma coluna no mobile */
+    gap: 15px;
+    width: 100%;
+}
+
+.method-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 15px 20px;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.method-icon { font-size: 1.5rem; color: #6b7280; }
+.highlight-method .method-icon { color: var(--gold-light); }
+.method-title { display: block; font-weight: 700; color: #fff; font-size: 0.95rem; }
+.method-desc { font-size: 0.75rem; color: #9ca3af; }
+
+/* --- CARD DE PREÇO VIP --- */
+.offer-card-vip-gold {
+    position: relative;
+    background: rgba(15, 15, 15, 0.95);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 24px;
+    padding: 50px 25px 40px 25px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    border-top: 1px solid rgba(212, 175, 55, 0.6);
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.vip-ribbon-gold {
+    position: absolute;
+    top: -16px; left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, var(--gold-primary), var(--gold-light));
+    color: #000;
+    font-weight: 800;
+    font-size: 0.75rem;
+    padding: 8px 20px;
+    border-radius: 50px;
+    white-space: nowrap;
+}
+
+.offer-card-vip-gold h3 { font-size: 1rem; color: #d1d5db; margin-bottom: 10px; font-weight: 400; }
+
+.price-display-gold {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end; 
+    justify-content: center;
+    color: #fff;
+    margin: 30px 0;
+    line-height: 1; 
+}
+
+.price-display-gold .currency {
+    font-size: 2rem;      
+    font-weight: 600;
+    color: #6b7280;
+    margin-right: 8px;
+    margin-bottom: 15px;   
+    font-family: var(--font-main);
+}
+
+.price-display-gold .value {
+    font-size: 7.5rem;    
+    font-weight: 800;
+    color: #fff;
+    font-family: var(--font-serif);
+    letter-spacing: -4px;  
+    line-height: 0.8;      
+}
+
+.price-display-gold .details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end; 
+    margin-left: 5px;
+    margin-bottom: 8px;    
+}
+
+.price-display-gold .cents {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+}
+
+.price-display-gold .frequency {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2px;
+}
+
+.price-note { font-size: 0.8rem; color: #a3a3a3; margin-bottom: 30px; line-height: 1.4; }
+.card-separator-gold { height: 1px; background: rgba(255,255,255,0.05); margin-bottom: 30px; }
+
+.security-row {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+.security-row i { color: #10b981; }
+
+@media (max-width: 380px) {
+    .btn-gold-shine {
+        white-space: normal;
+        text-align: center;
+        font-size: 0.85rem;
+        line-height: 1.2;
+    }
+}
+
+.btn-gold-shine:active {
+    transform: scale(0.98);
+}
+
+.safe-tag {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex; align-items: center; gap: 6px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.safe-tag i { color: var(--gold-primary); }
+
+
+/* =================================================================
+   MEDIA QUERIES (DESKTOP - 1024px+)
+   ================================================================= */
+@media (min-width: 1024px) {
+    
+    .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; 
+        padding: 15px 50px;
+        height: 90px;
+        gap: 20px; 
+    }
+
+    .logo-link {
+        flex-shrink: 0; 
+        margin-right: 0;
+    }
+
+    .logo-img { height: 60px; width: 60px; }
+
+   .nav-menu.hide-mobile {
+        display: block !important;
+        position: static !important; 
+        transform: none !important;
+        background: transparent !important;
+        width: auto !important;
+        height: auto !important;
+        border: none !important;
+        overflow: visible !important;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-list {
+        display: flex;       
+        flex-direction: row; 
+        align-items: center;
+        gap: 40px;          
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .nav-link {
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        white-space: nowrap; 
+    }
+
+    .nav-link:hover { color: var(--gold-light); }
+    
+    .nav-link::after {
+        content: '';
+        position: absolute; bottom: -5px; left: 0; width: 0%; height: 1px;
+        background: var(--gold-light);
+        transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    .mobile-menu-btn { 
+        display: none !important; 
+    }
+
+    .btn-header-whatsapp {
+        flex-shrink: 0; 
+        display: inline-flex !important;
+        align-items: center; gap: 10px;
+        background: linear-gradient(135deg, #128c7e, #075e54); 
+        color: #fff;
+        text-decoration: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        border: 1px solid rgba(255,255,255,0.1);
+        white-space: nowrap;
+    }
+
+    .btn-header-whatsapp span.hide-mobile {
+        display: inline !important; 
+    }
+
+    .btn-header-whatsapp:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(18, 140, 126, 0.4);
+    }
+
+    .hero-lashes-theme {
+        padding-top: 140px; 
+    }
+
+    .hero-lashes-theme h1 {
+        font-size: 4.8rem; 
+        max-width: 1000px;
+        margin: 0 auto 30px auto;
+    }
+
+    .hero-lashes-theme p {
+        font-size: 1.3rem;
+        max-width: 700px;
+        margin-bottom: 45px;
+    }
+
+   .btn-gold-shine {
+        width: fit-content;      
+        min-width: 420px;        
+        padding: 25px 60px;      
+        font-size: 1.1rem;       
+        gap: 15px;               
+        letter-spacing: 0.5px;   
+    }
+    
+    .btn-gold-shine:hover {
+        transform: translateY(-5px);
+        background: linear-gradient(to bottom, #fff 0%, #FCEeb5 100%);
+        box-shadow: 0 15px 50px rgba(212, 175, 55, 0.5);
+    }
+
+    .real-lashes-gallery { padding: 120px 0; }
+    
+    .real-lashes-gallery h2 {
+        font-size: 3.5rem;
+    }
+
+    .resultsSwiper {
+        padding-bottom: 80px !important;
+    }
+
+    .result-card-gold {
+        width: 100%; 
+        max-width: 280px; 
+        border-width: 2px; 
+    }
+
+    .result-card-gold:hover {
+        transform: translateY(-15px); 
+        border-color: var(--gold-light);
+        box-shadow: 0 40px 70px -10px rgba(0,0,0,0.8);
+    }
+    
+    .result-card-gold:hover .btn-play-gold {
+        transform: scale(1.1);
+        background: #fff;
+        color: var(--gold-dark);
+    }
+
+    .lashes-diff-section { padding: 140px 0; }
+    
+    .lashes-diff-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
+        gap: 80px;
+        align-items: center;
+    }
+
+    .gold-frame-card {
+        max-width: 450px;
+        height: 550px;
+    }
+    
+    .point-1 { right: -30px; }
+    .point-2 { left: -30px; }
+
+    .diff-content-gold {
+        align-items: flex-start; 
+        text-align: left;        
+        padding: 0;
+    }
+
+    .section-tag-gold {
+        font-size: 1.1rem;      
+        letter-spacing: 4px;    
+        margin-bottom: 25px;
+    }
+
+    .scarcity-tag-gold {
+        font-size: 1rem;
+    }
+    
+    .niche-badge.gold-theme {
+        font-size: 1rem;
+    }
+
+    .section-tag-gold {
+        align-self: flex-start; 
+        margin-left: 0;
+    }
+
+    .diff-content-gold h2 {
+        font-size: 3.2rem;
+        max-width: 600px;
+    }
+
+    .gold-copy {
+        font-size: 1.15rem;
+        margin-left: 0;
+    }
+
+    .curriculum-lashes { padding: 140px 0; }
+    
+   .curriculum-lashes .section-header {
+        align-items: center;      
+        text-align: center;       
+        margin-bottom: 80px;      
+    }
+
+    .curriculum-lashes .section-tag-gold {
+        align-self: center;       
+        margin-left: auto;       
+        margin-right: auto;
+        display: inline-block;
+    }
+
+    .curriculum-lashes h2 {
+        font-size: 3.8rem;
+        text-align: center;
+        margin: 0 auto 25px auto;
+    }
+
+    .curriculum-lashes p {
+        font-size: 1.3rem;
+        max-width: 750px;         
+        margin: 0 auto;          
+    }
+
+    .lashes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        padding: 0;
+    }
+
+    .lashes-card {
+        padding: 50px 40px;
+    }
+
+    .card-content h3 {
+        font-size: 1.6rem;
+    }
+
+    .testimonials-lashes { padding: 140px 0; }
+    
+    .testimonials-lashes .section-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center !important; 
+        text-align: center !important;
+    }
+
+    .testimonials-lashes .section-tag-gold {
+        align-self: center !important;  
+        margin-left: auto !important;   
+        margin-right: auto !important;
+        display: inline-block;
+    }
+
+    .testimonials-lashes h2 { font-size: 3.5rem; }
+    
+    .testimonials-lashes p { font-size: 1.3rem; max-width: 750px; }
+
+    .videoSwiper { padding-bottom: 80px !important; }
+
+    .video-card-frame:hover {
+        transform: translateY(-10px);
+        border-color: var(--gold-light);
+        box-shadow: 0 30px 60px rgba(212, 175, 55, 0.2);
+    }
+
+    .video-card-frame:hover .gold-play {
+        background: var(--gold-light);
+        color: #000;
+        transform: scale(1.1);
+        box-shadow: 0 0 40px rgba(252, 211, 77, 0.6);
+    }
+
+    .offer-section-lashes { padding: 140px 0; }
+
+    .offer-wrapper {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr; 
+        gap: 100px;
+        align-items: center;
+    }
+
+    .offer-pitch {
+        text-align: left;
+        align-items: flex-start; 
+    }
+
+    .offer-pitch h2 { font-size: 3.8rem; }
+    
+    .scarcity-tag-gold { align-self: flex-start; }
+
+    .payment-methods-grid {
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 20px;
+    }
+    
+    .method-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 10px;
+    }
+    
+    .method-icon { margin-bottom: 10px; font-size: 1.8rem; }
+
+    .offer-card-vip-gold {
+        transform: scale(1.1); 
+        padding: 60px 40px;
+    }
+
+   .price-display-gold .currency {
+        font-size: 3rem;
+        margin-right: 15px;
+        margin-bottom: 25px; 
+    }
+
+    .price-display-gold .value {
+        font-size: 9rem;
+    }
+
+    .price-display-gold .details {
+        margin-left: 10px;
+    }
+
+    .price-display-gold .cents {
+        font-size: 2.5rem;
+    }
+
+    .price-display-gold .frequency {
+        font-size: 0.85rem;
+        margin-top: 5px;
+    }
+    
+    .offer-card-vip-gold .btn-gold-shine {
+        width: 100% !important;      
+        min-width: auto !important; 
+        max-width: 100%;             
+        padding: 20px 15px;          
+        margin-top: 20px;            
+        font-size: 1rem;             
+        
+        /* Centralização Flex */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .offer-card-vip-gold .btn-gold-shine i {
+        flex-shrink: 0;
+    }
+
+}
+
