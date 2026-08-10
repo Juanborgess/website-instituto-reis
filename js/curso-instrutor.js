@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 mobileBtn.classList.remove('active');
                 navMenu.classList.remove('active');
             }
+            
         });
         
         console.log("Menu Mobile: Ativado.");

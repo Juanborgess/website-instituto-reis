@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             observeParents: true,
             autoplay: { delay: 4000, disableOnInteraction: false },
             pagination: { el: ".swiper-pagination", clickable: true },
+            watchOverflow: true,
             breakpoints: {
                 640: { slidesPerView: 2.2, spaceBetween: 25 },
                 1024: { slidesPerView: 3.2, spaceBetween: 30 },
@@ -91,17 +92,18 @@ document.addEventListener('DOMContentLoaded', () => {
             slidesPerView: 1.2,
             spaceBetween: 20,
             centeredSlides: true,
-            loop: true,
+            loop: false,
             grabCursor: true,
             observer: true, 
             observeParents: true,
             watchSlidesProgress: true,
+            watchOverflow: true,
             pagination: { el: ".swiper-pagination", clickable: true },
             
             breakpoints: {
                 768: { slidesPerView: 2, centeredSlides: false },
-                1024: { slidesPerView: 3, spaceBetween: 30, centeredSlides: true },
-                1440: { slidesPerView: 4, spaceBetween: 40, centeredSlides: true }
+                1024: { slidesPerView: 3, spaceBetween: 30, centeredSlides: false },
+                1440: { slidesPerView: 4, spaceBetween: 40, centeredSlides: false }
             },
             on: {
                 init: function() {

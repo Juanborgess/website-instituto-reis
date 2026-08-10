@@ -492,7 +492,7 @@ ul { list-style: none; }
 /* Ajuste do Swiper para não cortar sombras */
 .royal-course-slider {
     padding: 20px 10px 60px 10px; 
-    overflow: visible !important;
+    /* overflow removido para consertar o vazamento de cards no desktop */
 }
 
 /* 2. O CARD ROYAL (VERTICAL / POSTER) */
@@ -612,16 +612,23 @@ ul { list-style: none; }
 }
 
 /* 4. PAGINAÇÃO (BOLINHAS) */
-.royal-course-slider .swiper-pagination-bullet { 
+.royal-course-slider .swiper-pagination-bullet,
+.video-slider-vertical .swiper-pagination-bullet { 
     background: rgba(255,255,255,0.3); 
     opacity: 1; 
     width: 8px; height: 8px;
     transition: all 0.3s;
 }
-.royal-course-slider .swiper-pagination-bullet-active { 
+.royal-course-slider .swiper-pagination-bullet-active,
+.video-slider-vertical .swiper-pagination-bullet-active { 
     background: var(--royal-gold); 
     width: 25px; 
     border-radius: 10px; 
+}
+
+.video-slider-vertical {
+    padding: 20px 10px 60px 10px;
+    /* overflow removido para consertar o vazamento de cards no desktop */
 }
 
 /* =========================================
@@ -1151,6 +1158,16 @@ body.home-light-theme .royal-courses-section {
 
 body.home-light-theme .royal-testimonials-section {
     background: linear-gradient(to bottom, #FFFFFF 0%, #F8F9FD 100%);
+}
+
+body.home-light-theme .royal-course-slider .swiper-pagination-bullet,
+body.home-light-theme .video-slider-vertical .swiper-pagination-bullet {
+    background: rgba(0, 26, 53, 0.2);
+}
+
+body.home-light-theme .royal-course-slider .swiper-pagination-bullet-active,
+body.home-light-theme .video-slider-vertical .swiper-pagination-bullet-active {
+    background: var(--royal-gold);
 }
 
 body.home-light-theme .royal-testimonials-section .royal-bg-dark {
