@@ -41,7 +41,7 @@ Este documento descreve o passo a passo para a criação e implantação da nova
 
 **Objetivo:** Garantir que tudo funciona no ambiente real.
 
-- [ ] Realizar envios de teste para confirmar se as informações estão entrando nas colunas corretas da aba no Google Sheets.
-- [ ] Testar a responsividade no celular (já que o público acessará via QR Code na rua, a experiência mobile tem que ser impecável e fluida).
-- [ ] Fazer o Push para a branch `main` do GitHub para disparar o GitHub Actions (FTP).
-- [ ] Validar a publicação final no servidor da Hostinger em `/sorteio`.
+- [x] Realizar envios de teste para confirmar se as informações estão entrando nas colunas corretas da aba no Google Sheets.
+- [x] Testar a responsividade no celular (já que o público acessará via QR Code na rua, a experiência mobile tem que ser impecável e fluida).
+- [x] Fazer o Push para a branch `main` do GitHub para disparar o GitHub Actions (FTP).
+- [x] Validar a publicação final no servidor da Hostinger em `/sorteio`.
