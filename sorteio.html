@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio Instituto Reis - Caça ao Curso</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f3d56a;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.65);
+            --border-color: rgba(212, 175, 55, 0.2);
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --whatsapp: #25D366;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.15) 0%, rgba(0, 0, 0, 1) 70%);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Efeito de luzes de fundo */
+        .ambient-light {
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(60px);
+        }
+        
+        .ambient-light-2 {
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(60px);
+        }
+
+        .quiz-container {
+            width: 100%;
+            max-width: 650px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+            transform: translateY(0);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Header */
+        .quiz-header {
+            padding: 40px 30px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .quiz-header img {
+            height: 60px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+        }
+
+        .quiz-header h1 {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, var(--gold), var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .quiz-header h2.subtitle-gold {
+            font-size: 15px;
+            color: var(--gold-light);
+            margin-bottom: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            animation: pulseText 2s infinite;
+        }
+
+        @keyframes pulseText {
+            0% { opacity: 0.8; text-shadow: 0 0 5px rgba(212,175,55,0.2); }
+            50% { opacity: 1; text-shadow: 0 0 20px rgba(212,175,55,0.8); }
+            100% { opacity: 0.8; text-shadow: 0 0 5px rgba(212,175,55,0.2); }
+        }
+
+        .quiz-header p {
+            color: var(--text-main);
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        /* Progress */
+        .progress-container {
+            background: rgba(0, 0, 0, 0.5);
+            height: 4px;
+            width: 100%;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            height: 100%;
+            width: 0%;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        /* Body */
+        .quiz-body {
+            padding: 40px 30px;
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .step {
+            display: none;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.4s ease;
+        }
+
+        .step.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+            animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .step h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        /* Options */
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 18px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-muted);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-label:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-2px);
+            color: var(--text-main);
+        }
+
+        .option-label input[type="radio"] {
+            display: none;
+        }
+
+        .option-label .icon {
+            font-size: 20px;
+            margin-right: 15px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .option-label.selected {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+        }
+        
+        .option-label.selected::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--gold);
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        /* Inputs */
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-text {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 20px;
+            border-radius: 12px;
+            font-size: 16px;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+        }
+
+        .input-text::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .input-text:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Footer */
+        .quiz-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-prev {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-prev:hover {
+            color: var(--text-main);
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, var(--gold), #b89324);
+            color: #000;
+            margin-left: auto;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+        }
+
+        .btn-next:disabled {
+            background: #333;
+            color: #666;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* WhatsApp Button */
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            width: 100%;
+            padding: 18px;
+            font-size: 16px;
+            margin-top: 25px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            text-decoration: none;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp i {
+            font-size: 22px;
+        }
+
+        /* States */
+        .feedback-screen {
+            text-align: center;
+        }
+        
+        .feedback-screen .icon-wrapper {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .feedback-screen i {
+            font-size: 45px;
+            color: var(--gold);
+        }
+
+        .feedback-screen.success .icon-wrapper {
+            background: rgba(37, 211, 102, 0.1);
+            border-color: rgba(37, 211, 102, 0.3);
+        }
+        .feedback-screen.success i {
+            color: var(--whatsapp);
+        }
+
+        .feedback-screen h2 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fff, #ccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feedback-screen p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .error-msg {
+            color: #ff4d4d;
+            font-size: 13px;
+            margin-top: 15px;
+            display: none;
+            text-align: center;
+            font-weight: 600;
+            background: rgba(255, 77, 77, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 77, 77, 0.2);
+        }
+
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(30px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Spin Animation */
+        .fa-spin-custom {
+            animation: spin 1.5s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .quiz-body { padding: 30px 20px; }
+            .quiz-header { padding: 30px 20px 15px; }
+            .step h3 { font-size: 19px; }
+            .option-label { padding: 15px; font-size: 14px; }
+            .btn { padding: 12px 20px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-light"></div>
+    <div class="ambient-light-2"></div>
+
+    <div class="quiz-container">
+        
+        <div class="quiz-header">
+            <img src="./assets/img/logo.png" alt="Instituto Reis" onerror="this.src='https://via.placeholder.com/150x60?text=LOGO+AQUI'">
+            <h1>🔎 CAÇA AO CURSO</h1>
+            <h2 class="subtitle-gold">— VOCÊ ENCONTROU! —</h2>
+            <p>Você acaba de encontrar um QR Code escondido em Jacarepaguá.<br><br>Responda algumas perguntas, descubra qual profissão combina com você e concorra a 1 CURSO PROFISSIONALIZANTE 100% GRATUITO no Instituto Reis.<br><br>Leva menos de 2 minutos. Boa sorte! 🍀</p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="quiz-body">
+            <form id="sorteioForm">
+                
+                <!-- Passo 1 -->
+                <div class="step active" data-step="1">
+                    <h3>1. Qual curso/profissão mais despertou seu interesse?</h3>
+                    <div class="options-grid">
+                        <label class="option-label">
+                            <input type="radio" name="curso_interesse" value="Barbeiro">
+                            <span class="icon">💈</span> <span>Barbeiro</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="curso_interesse" value="Cílios">
+                            <span class="icon">👁️</span> <span>Cílios</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="curso_interesse" value="Sobrancelhas">
+                            <span class="icon">✨</span> <span>Sobrancelhas</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="curso_interesse" value="Tranças">
+                            <span class="icon">💇🏽‍♀️</span> <span>Tranças</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Passo 2 -->
+                <div class="step" data-step="2">
+                    <h3>2. Você já teve algum contato com essa área?</h3>
+                    <div class="options-grid">
+                        <label class="option-label"><input type="radio" name="contato_anterior" value="Nunca tive contato"><span>Nunca tive contato</span></label>
+                        <label class="option-label"><input type="radio" name="contato_anterior" value="Já fiz algum procedimento/serviço"><span>Já fiz algum procedimento/serviço</span></label>
+                        <label class="option-label"><input type="radio" name="contato_anterior" value="Já tentei aprender sozinho(a)"><span>Já tentei aprender sozinho(a)</span></label>
+                        <label class="option-label"><input type="radio" name="contato_anterior" value="Já fiz algum curso"><span>Já fiz algum curso</span></label>
+                        <label class="option-label"><input type="radio" name="contato_anterior" value="Já trabalho com isso"><span>Já trabalho com isso</span></label>
+                    </div>
+                </div>
+
+                <!-- Passo 3 -->
+                <div class="step" data-step="3">
+                    <h3>3. Hoje, como você considera seu conhecimento nessa área?</h3>
+                    <div class="options-grid">
+                        <label class="option-label"><input type="radio" name="conhecimento" value="Não sei absolutamente nada"><span>Não sei absolutamente nada</span></label>
+                        <label class="option-label"><input type="radio" name="conhecimento" value="Sei o básico"><span>Sei o básico</span></label>
+                        <label class="option-label"><input type="radio" name="conhecimento" value="Tenho alguma prática"><span>Tenho alguma prática</span></label>
+                        <label class="option-label"><input type="radio" name="conhecimento" value="Já sei trabalhar, mas quero me profissionalizar"><span>Já sei trabalhar, mas quero me profissionalizar</span></label>
+                        <label class="option-label"><input type="radio" name="conhecimento" value="Já sou profissional e quero me aperfeiçoar"><span>Já sou profissional e quero me aperfeiçoar</span></label>
+                    </div>
+                </div>
+
+                <!-- Passo 4 -->
+                <div class="step" data-step="4">
+                    <h3>4. Atualmente, você trabalha?</h3>
+                    <div class="options-grid">
+                        <label class="option-label"><input type="radio" name="trabalha" value="Sim, carteira assinada"><span>Sim, carteira assinada</span></label>
+                        <label class="option-label"><input type="radio" name="trabalha" value="Sim, conta própria"><span>Sim, por conta própria</span></label>
+                        <label class="option-label"><input type="radio" name="trabalha" value="Faço trabalhos/autônomo(a) sem renda fixa"><span>Trabalhos/autônomo(a) sem renda fixa</span></label>
+                        <label class="option-label"><input type="radio" name="trabalha" value="Estou desempregado(a)"><span>Estou desempregado(a)</span></label>
+                        <label class="option-label"><input type="radio" name="trabalha" value="Estou estudando"><span>Estou estudando</span></label>
+                        <label class="option-label"><input type="radio" name="trabalha" value="Não estou trabalhando"><span>Não estou trabalhando no momento</span></label>
+                    </div>
+                </div>
+
+                <!-- Passo 5 -->
+                <div class="step" data-step="5">
+                    <h3>5. Em qual área você trabalha atualmente?</h3>
+                    <div class="input-group">
+                        <input type="text" class="input-text" name="area_atual" placeholder="Sua área de atuação (ou 'Nenhuma')" autocomplete="off">
+                    </div>
+                </div>
+
+                <!-- Passo 6 -->
+                <div class="step" data-step="6">
+                    <h3>6. O que você gostaria de conquistar nos próximos meses?</h3>
+                    <div class="options-grid">
+                        <label class="option-label"><input type="radio" name="objetivo_meses" value="Aumentar minha renda"><span class="icon">💰</span><span>Aumentar minha renda</span></label>
+                        <label class="option-label"><input type="radio" name="objetivo_meses" value="Conseguir um emprego"><span class="icon">💼</span><span>Conseguir um emprego</span></label>
+                        <label class="option-label"><input type="radio" name="objetivo_meses" value="Mudar de profissão"><span class="icon">🔄</span><span>Mudar de profissão</span></label>
+                        <label class="option-label"><input type="radio" name="objetivo_meses" value="Começar a trabalhar por conta própria"><span class="icon">🏠</span><span>Trabalhar por conta própria</span></label>
+                        <label class="option-label"><input type="radio" name="objetivo_meses" value="Ter uma renda extra"><span class="icon">💵</span><span>Ter uma renda extra</span></label>
+                        <label class="option-label"><input type="radio" name="objetivo_meses" value="Trabalhar com algo que eu realmente goste"><span class="icon">❤️</span><span>Trabalhar com algo que goste</span></label>
+                        <label class="option-label"><input type="radio" name="objetivo_meses" value="Crescer profissionalmente"><span class="icon">🚀</span><span>Crescer profissionalmente</span></label>
+                    </div>
+                </div>
+
+                <!-- Passo 7 -->
+                <div class="step" data-step="7">
+                    <h3>7. Qual é o seu maior objetivo profissional hoje?</h3>
+                    <div class="input-group">
+                        <input type="text" class="input-text" name="objetivo_profissional" placeholder="Ex: Ser dono do meu próprio salão..." autocomplete="off">
+                    </div>
+                </div>
+
+                <!-- Passo 8 -->
+                <div class="step" data-step="8">
+                    <h3>8. Se pudesse mudar uma coisa na sua vida profissional hoje, o que você mudaria?</h3>
+                    <div class="input-group">
+                        <input type="text" class="input-text" name="o_que_mudaria" placeholder="O que você mudaria?" autocomplete="off">
+                    </div>
+                </div>
+
+                <!-- Passo 9 -->
+                <div class="step" data-step="9">
+                    <h3>9. Se você tivesse a oportunidade de começar uma nova profissão, o que estaria te impedindo hoje?</h3>
+                    <div class="options-grid">
+                        <label class="option-label"><input type="radio" name="impedimento" value="O valor do curso"><span class="icon">💰</span><span>O valor do curso</span></label>
+                        <label class="option-label"><input type="radio" name="impedimento" value="Falta de tempo"><span class="icon">⏰</span><span>Falta de tempo</span></label>
+                        <label class="option-label"><input type="radio" name="impedimento" value="Não sei qual curso escolher"><span class="icon">🤔</span><span>Não sei qual curso escolher</span></label>
+                        <label class="option-label"><input type="radio" name="impedimento" value="Medo de começar"><span class="icon">😰</span><span>Medo de começar</span></label>
+                        <label class="option-label"><input type="radio" name="impedimento" value="Acho que não tenho conhecimento"><span class="icon">📚</span><span>Acho que não tenho conhecimento</span></label>
+                        <label class="option-label"><input type="radio" name="impedimento" value="Distância/localização"><span class="icon">📍</span><span>Distância/localização</span></label>
+                        <label class="option-label"><input type="radio" name="impedimento" value="Nada! Só esperando oportunidade!"><span class="icon">🚀</span><span>Nada! Só estou esperando uma oportunidade!</span></label>
+                    </div>
+                </div>
+
+                <!-- Passo 10 -->
+                <div class="step" data-step="10">
+                    <h3>🎉 Agora falta pouco!</h3>
+                    <p style="margin-bottom: 25px; color: var(--text-muted); text-align: center;">Preencha os dados finais para confirmar sua participação no sorteio e siga nosso Instagram <strong>@institutoreis__</strong></p>
+                    
+                    <div class="input-group">
+                        <input type="text" class="input-text" name="nome_completo" placeholder="Nome e Sobrenome *" required autocomplete="name">
+                    </div>
+                    <div class="input-group">
+                        <input type="number" class="input-text" name="idade" placeholder="Idade *" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="tel" class="input-text" name="whatsapp" placeholder="WhatsApp (DDD + Número) *" required autocomplete="tel">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="input-text" name="bairro" placeholder="Bairro onde mora *" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" class="input-text" name="email" placeholder="E-mail *" required autocomplete="email">
+                    </div>
+                </div>
+
+                <!-- Step Loading -->
+                <div class="step feedback-screen" data-step="11" id="loadingStep">
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-spinner fa-spin-custom"></i>
+                    </div>
+                    <h2>Registrando Sorteio...</h2>
+                    <p>Por favor, não feche esta página.<br>Estamos processando seus dados.</p>
+                </div>
+
+                <!-- Step Sucesso -->
+                <div class="step feedback-screen success" data-step="12" id="successStep">
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h2>Cadastro Confirmado!</h2>
+                    <p>Falta apenas 1 clique para oficializar sua participação no Caça ao Curso do Instituto Reis.</p>
+                    <a href="https://wa.me/5521966666335?text=Acabei%20de%20me%20cadastrar%20no%20ca%C3%A7a%20ao%20curso%20do%20instituto%20reis" target="_blank" class="btn btn-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> Confirmar no WhatsApp
+                    </a>
+                </div>
+
+                <div class="error-msg" id="errorMsg"><i class="fa-solid fa-triangle-exclamation"></i> Por favor, preencha o campo antes de avançar.</div>
+
+                <div class="quiz-footer" id="quizFooter">
+                    <button type="button" class="btn btn-prev" id="btnPrev">
+                        <i class="fa-solid fa-arrow-left"></i> Voltar
+                    </button>
+                    <button type="button" class="btn btn-next" id="btnNext">
+                        Próximo <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Configurações e Variáveis
+        const API_URL = "https://script.google.com/macros/s/AKfycbxaSOTHqTD3rir1pqatq1Ad8ouXgCvWigzDD8vFZxgkwzTP-a7dbOsY-Gg9uw1Rz3oc/exec";
+        const TOTAL_STEPS = 10;
+        let currentStep = 1;
+
+        // Elementos DOM
+        const steps = document.querySelectorAll('.step');
+        const progressBar = document.getElementById('progressBar');
+        const btnPrev = document.getElementById('btnPrev');
+        const btnNext = document.getElementById('btnNext');
+        const errorMsg = document.getElementById('errorMsg');
+        const quizFooter = document.getElementById('quizFooter');
+        const form = document.getElementById('sorteioForm');
+
+        // Inicialização
+        updateUI();
+
+        // Efeito visual de seleção nos radio buttons e Avanço Automático
+        const optionLabels = document.querySelectorAll('.option-label');
+        optionLabels.forEach(label => {
+            label.addEventListener('click', function() {
+                const parent = this.parentElement;
+                const siblings = parent.querySelectorAll('.option-label');
+                siblings.forEach(s => s.classList.remove('selected'));
+                this.classList.add('selected');
+                errorMsg.style.display = 'none';
+
+                // Efeito sonoro suave ou vibração (opcional em mobile)
+                if (navigator.vibrate) navigator.vibrate(50);
+
+                setTimeout(() => {
+                    if (currentStep < TOTAL_STEPS) btnNext.click();
+                }, 400);
+            });
+        });
+
+        // Limpar erro ao digitar nos campos de texto
+        const textInputs = document.querySelectorAll('.input-text');
+        textInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                errorMsg.style.display = 'none';
+            });
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    btnNext.click();
+                }
+            });
+        });
+
+        // Controle do botão Próximo
+        btnNext.addEventListener('click', () => {
+            if (validateStep(currentStep)) {
+                errorMsg.style.display = 'none';
+                if (currentStep < TOTAL_STEPS) {
+                    currentStep++;
+                    updateUI();
+                } else if (currentStep === TOTAL_STEPS) {
+                    submitForm();
+                }
+            } else {
+                errorMsg.style.display = 'block';
+                // Animação de erro no formulário
+                const currentStepEl = document.querySelector(`.step[data-step="${currentStep}"]`);
+                currentStepEl.style.transform = 'translateX(-10px)';
+                setTimeout(() => currentStepEl.style.transform = 'translateX(10px)', 100);
+                setTimeout(() => currentStepEl.style.transform = 'translateX(0)', 200);
+            }
+        });
+
+        // Controle do botão Voltar
+        btnPrev.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateUI();
+                errorMsg.style.display = 'none';
+            }
+        });
+
+        // Atualiza a Interface
+        function updateUI() {
+            const progress = ((currentStep - 1) / TOTAL_STEPS) * 100;
+            progressBar.style.width = progress + '%';
+
+            steps.forEach(step => {
+                step.classList.remove('active');
+                if (parseInt(step.getAttribute('data-step')) === currentStep) {
+                    step.classList.add('active');
+                }
+            });
+
+            btnPrev.style.visibility = currentStep > 1 ? 'visible' : 'hidden';
+            
+            if (currentStep === TOTAL_STEPS) {
+                btnNext.innerHTML = 'Finalizar <i class="fa-solid fa-check"></i>';
+            } else {
+                btnNext.innerHTML = 'Próximo <i class="fa-solid fa-arrow-right"></i>';
+            }
+        }
+
+        // Validação
+        function validateStep(stepIndex) {
+            const currentStepEl = document.querySelector(`.step[data-step="${stepIndex}"]`);
+            
+            const radios = currentStepEl.querySelectorAll('input[type="radio"]');
+            if (radios.length > 0) {
+                let checked = false;
+                radios.forEach(r => { if (r.checked) checked = true; });
+                return checked;
+            }
+
+            const inputs = currentStepEl.querySelectorAll('.input-text');
+            if (inputs.length > 0) {
+                let valid = true;
+                inputs.forEach(input => {
+                    if (input.value.trim() === '') valid = false;
+                });
+                return valid;
+            }
+
+            return true;
+        }
+
+        // Submissão via Fetch
+        function submitForm() {
+            currentStep = 11;
+            progressBar.style.width = '100%';
+            quizFooter.style.display = 'none';
+            errorMsg.style.display = 'none';
+            
+            steps.forEach(s => s.classList.remove('active'));
+            document.getElementById('loadingStep').classList.add('active');
+
+            const formData = new FormData(form);
+            const dataObj = {};
+            formData.forEach((value, key) => { dataObj[key] = value; });
+
+            fetch(API_URL, {
+                method: 'POST',
+                mode: 'no-cors', 
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dataObj)
+            })
+            .then(() => {
+                setTimeout(() => showSuccess(dataObj), 1000); // Adiciona um pequeno delay para a UX parecer natural
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert("Houve um erro de conexão. Tente novamente.");
+                currentStep = TOTAL_STEPS;
+                quizFooter.style.display = 'flex';
+                updateUI();
+            });
+        }
+
+        function showSuccess(dataObj) {
+            document.getElementById('loadingStep').classList.remove('active');
+            document.getElementById('successStep').classList.add('active');
+
+            // Pegar o nome completo (nome e sobrenome) digitado pelo usuário
+            const nomeCompleto = dataObj && dataObj.nome_completo ? dataObj.nome_completo.trim() : '';
+            const textoZap = nomeCompleto 
+                ? `Acabei de me cadastrar no caça ao curso do instituto reis. Meu nome é ${nomeCompleto}!`
+                : `Acabei de me cadastrar no caça ao curso do instituto reis.`;
+            
+            const btnZap = document.querySelector('.btn-whatsapp');
+            if(btnZap) {
+                btnZap.href = `https://wa.me/5521966666335?text=${encodeURIComponent(textoZap)}`;
+            }
+        }
+
+    </script>
+</body>
+</html>
