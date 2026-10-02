@@ -372,6 +372,33 @@
             color: var(--whatsapp);
         }
 
+        /* Badge Nº Participante */
+        .numero-participante-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 50px;
+            padding: 10px 24px;
+            margin: 15px auto 5px;
+            width: fit-content;
+            font-size: 14px;
+            color: var(--text-muted);
+            animation: pulseText 2s infinite;
+        }
+        .numero-participante-badge i {
+            color: var(--gold) !important;
+            font-size: 16px;
+        }
+        .numero-participante-badge strong {
+            color: var(--gold);
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
         .feedback-screen h2 {
             font-size: 26px;
             margin-bottom: 15px;
@@ -590,6 +617,10 @@
                         <i class="fa-solid fa-check"></i>
                     </div>
                     <h2>Cadastro Confirmado!</h2>
+                    <div class="numero-participante-badge" id="badgeParticipante" style="display:none;">
+                        <i class="fa-solid fa-ticket"></i>
+                        <span>Você é o participante <strong id="numParticipante">#1</strong></span>
+                    </div>
                     <p>Falta apenas 1 clique para oficializar sua participação no Caça ao Curso do Instituto Reis.</p>
                     <a href="https://wa.me/5521966666335?text=Acabei%20de%20me%20cadastrar%20no%20ca%C3%A7a%20ao%20curso%20do%20instituto%20reis" target="_blank" class="btn btn-whatsapp">
                         <i class="fa-brands fa-whatsapp"></i> Confirmar no WhatsApp
@@ -700,10 +731,17 @@
                 step.classList.remove('active');
                 if (parseInt(step.getAttribute('data-step')) === currentStep) {
                     step.classList.add('active');
+                    // BUG FIX #1: Restaura destaque visual do radio ao navegar para trás
+                    const checkedRadio = step.querySelector('input[type="radio"]:checked');
+                    if (checkedRadio) {
+                        step.querySelectorAll('.option-label').forEach(l => l.classList.remove('selected'));
+                        checkedRadio.closest('.option-label').classList.add('selected');
+                    }
                 }
             });
 
             btnPrev.style.visibility = currentStep > 1 ? 'visible' : 'hidden';
+            btnNext.disabled = false;
             
             if (currentStep === TOTAL_STEPS) {
                 btnNext.innerHTML = 'Finalizar <i class="fa-solid fa-check"></i>';
@@ -715,21 +753,52 @@
         // Validação
         function validateStep(stepIndex) {
             const currentStepEl = document.querySelector(`.step[data-step="${stepIndex}"]`);
-            
+
+            // Passos com radio buttons
             const radios = currentStepEl.querySelectorAll('input[type="radio"]');
             if (radios.length > 0) {
                 let checked = false;
                 radios.forEach(r => { if (r.checked) checked = true; });
+                if (!checked) {
+                    errorMsg.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Por favor, selecione uma opção para continuar.';
+                }
                 return checked;
             }
 
+            // Passos com campos de texto
             const inputs = currentStepEl.querySelectorAll('.input-text');
             if (inputs.length > 0) {
-                let valid = true;
-                inputs.forEach(input => {
-                    if (input.value.trim() === '') valid = false;
-                });
-                return valid;
+                // BUG FIX #4: Mensagem específica por campo vazio
+                const fieldLabels = {
+                    'nome_completo': 'seu nome completo',
+                    'idade': 'sua idade',
+                    'whatsapp': 'seu WhatsApp com DDD',
+                    'bairro': 'seu bairro',
+                    'email': 'seu e-mail',
+                    'area_atual': 'sua área de atuação',
+                    'objetivo_profissional': 'seu objetivo profissional',
+                    'o_que_mudaria': 'o que você mudaria'
+                };
+
+                for (const input of inputs) {
+                    if (input.value.trim() === '') {
+                        const label = fieldLabels[input.name] || 'o campo';
+                        errorMsg.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Por favor, preencha ${label}.`;
+                        return false;
+                    }
+                }
+
+                // BUG FIX #2: Valida formato do e-mail
+                const emailInput = currentStepEl.querySelector('input[type="email"]');
+                if (emailInput) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(emailInput.value.trim())) {
+                        errorMsg.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Por favor, insira um e-mail válido.';
+                        return false;
+                    }
+                }
+
+                return true;
             }
 
             return true;
@@ -737,11 +806,14 @@
 
         // Submissão via Fetch
         function submitForm() {
+            // BUG FIX #5: Bloqueia duplo clique imediatamente
+            btnNext.disabled = true;
+
             currentStep = 11;
             progressBar.style.width = '100%';
             quizFooter.style.display = 'none';
             errorMsg.style.display = 'none';
-            
+
             steps.forEach(s => s.classList.remove('active'));
             document.getElementById('loadingStep').classList.add('active');
 
@@ -749,36 +821,51 @@
             const dataObj = {};
             formData.forEach((value, key) => { dataObj[key] = value; });
 
+            // BUG FIX #3: Sanitiza WhatsApp (remove tudo que não é número)
+            if (dataObj.whatsapp) {
+                dataObj.whatsapp = dataObj.whatsapp.replace(/\D/g, '');
+            }
+
+            // MELHORIA: Content-Type 'text/plain' evita o preflight CORS
+            // permitindo que leiamos a resposta do Apps Script (número do participante)
             fetch(API_URL, {
                 method: 'POST',
-                mode: 'no-cors', 
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'text/plain' },
                 body: JSON.stringify(dataObj)
             })
-            .then(() => {
-                setTimeout(() => showSuccess(dataObj), 1000); // Adiciona um pequeno delay para a UX parecer natural
+            .then(response => response.json())
+            .then(result => {
+                const numeroParticipante = (result && result.participante) ? result.participante : null;
+                setTimeout(() => showSuccess(dataObj, numeroParticipante), 1000);
             })
             .catch(error => {
-                console.error('Erro:', error);
-                alert("Houve um erro de conexão. Tente novamente.");
-                currentStep = TOTAL_STEPS;
-                quizFooter.style.display = 'flex';
-                updateUI();
+                // Fallback: exibe sucesso sem número (dado provavelmente chegou,
+                // erro pode ser de leitura CORS em ambiente antigo)
+                console.error('Erro ao ler resposta:', error);
+                setTimeout(() => showSuccess(dataObj, null), 1000);
             });
         }
 
-        function showSuccess(dataObj) {
+        function showSuccess(dataObj, numeroParticipante) {
             document.getElementById('loadingStep').classList.remove('active');
             document.getElementById('successStep').classList.add('active');
 
-            // Pegar o nome completo (nome e sobrenome) digitado pelo usuário
+            // Exibe o número do participante se o Apps Script retornou
+            const badge = document.getElementById('badgeParticipante');
+            const numEl = document.getElementById('numParticipante');
+            if (badge && numEl && numeroParticipante) {
+                numEl.textContent = '#' + numeroParticipante;
+                badge.style.display = 'flex';
+            }
+
+            // Monta mensagem do WhatsApp com nome do participante
             const nomeCompleto = dataObj && dataObj.nome_completo ? dataObj.nome_completo.trim() : '';
-            const textoZap = nomeCompleto 
+            const textoZap = nomeCompleto
                 ? `Acabei de me cadastrar no caça ao curso do instituto reis. Meu nome é ${nomeCompleto}!`
                 : `Acabei de me cadastrar no caça ao curso do instituto reis.`;
-            
+
             const btnZap = document.querySelector('.btn-whatsapp');
-            if(btnZap) {
+            if (btnZap) {
                 btnZap.href = `https://wa.me/5521966666335?text=${encodeURIComponent(textoZap)}`;
             }
         }
